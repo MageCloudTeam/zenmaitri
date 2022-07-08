@@ -1,0 +1,121 @@
+{
+  "wrapper": "div.index-section.light-background.index-section--flush",
+  "sections": {
+    "product-template": {
+      "type": "product-template",
+      "settings": {
+        "benefits_heading": "Benefits",
+        "delivery_note": "<p><strong>FREE<\/strong> standard UK delivery when you spend £30 or more. <\/p>",
+        "description_style": "default",
+        "social_enable": true,
+        "image_size": "medium",
+        "thumbnail_position": "beside",
+        "show_thumbnails": false,
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted",
+        "wishlist_position": "top"
+      }
+    },
+    "165346918743d89011": {
+      "type": "advanced-content",
+      "blocks": {
+        "165346918775b3f7b5-1": {
+          "type": "html",
+          "settings": {
+            "code": "<center> <div style=\"margin-bottom: 1px;\"> <h1>What our community says about this product...<\/h1> <\/div> <\/center>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "165346918775b3f7b5-1"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "loox-product-reviews-app-section": {
+      "type": "apps",
+      "blocks": {
+        "loox-product-reviews": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "hide_thumbnails": false,
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "loox-product-reviews"
+      ],
+      "settings": {
+      }
+    },
+    "product-herbalist-note": {
+      "type": "product-herbalist-note",
+      "settings": {
+        "title": "Herbalist Note",
+        "height": 650
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "show_section": true,
+        "recent_count": 5
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "You may also like",
+        "related_count": 5
+      }
+    },
+    "product-square-banners": {
+      "type": "product-square-banners",
+      "settings": {
+        "show_section": true,
+        "overlay_colour": "#000000",
+        "overlay_opacity": 50
+      }
+    },
+    "product-related-blog-posts": {
+      "type": "product-related-blog-posts",
+      "settings": {
+        "blog": "",
+        "title": "Related Blog Posts",
+        "sub_title": "Blog posts about our health tinctures, capsules and more.",
+        "blog_show_date": true,
+        "view_all": true,
+        "view_all_text": "Journal"
+      }
+    },
+    "sesami-questions": {
+      "type": "sesami-questions",
+      "settings": {
+        "heading": "Pre-Consultation Form",
+        "note": "<p>Please provide as much detail ahead of your consultation with the Zen Maitri team.<\/p>",
+        "submit_text": "Submit"
+      }
+    }
+  },
+  "order": [
+    "product-template",
+    "165346918743d89011",
+    "loox-product-reviews-app-section",
+    "product-herbalist-note",
+    "recently-viewed",
+    "product-recommendations",
+    "product-square-banners",
+    "product-related-blog-posts",
+    "sesami-questions"
+  ]
+}

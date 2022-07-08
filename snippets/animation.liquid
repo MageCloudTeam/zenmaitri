@@ -1,0 +1,18 @@
+<div id="{{ id }}" class="animation-container{% if class %} {{ class }}{% else %} glow{% endif %}"></div>
+{% assign animationPath = path | asset_url | split:'?' | first %}
+<script>
+  (function () {
+    zmAnimations.register({
+      container: document.getElementById('{{ id }}'), // required
+      path: '{{ animationPath }}', // required
+      renderer: 'svg', // required
+      loop: true, // optional
+      autoplay: true, // optional
+      name: "{{ name }}", // optional
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid meet',
+        viewBoxOnly: true
+      },
+    });
+  })();
+</script>

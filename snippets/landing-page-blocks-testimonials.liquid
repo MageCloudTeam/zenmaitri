@@ -1,0 +1,63 @@
+{% liquid
+  assign testimonials = page.metafields.landing_page.testimonial
+  assign name = page.metafields.landing_page.name
+%}
+
+{% assign slide_count = 0 %}
+{% for testimonial in testimonials %}
+  {% assign slide_count = slide_count | plus: 1 %}
+{% endfor %}
+
+{%- if testimonials != blank -%}
+  {%- if block.settings.divider -%}
+    <div class="page-width"><div class="section--divider">{% render 'svg-icon' with 'divider' %}</div></div>
+  {%- endif -%}
+
+  <div
+    class="testimonials-section testimonials-{{ block.id }} text-{{ block.settings.align_text }} about-has-margin"
+    data-section-id="{{ block.id }}"
+    data-section-type="testimonials"
+    data-aos>
+    <div class="page-width">
+      {%- if block.settings.title != blank -%}
+        <div class="section-header">
+          <h2 class="section-header__title">{{ block.settings.title | escape }}</h2>
+          {% if block.settings.intro_text != blank %}
+            <p>{{ block.settings.intro_text | escape }}</p>
+          {% endif %}
+        </div>
+      {%- endif -%}
+
+        <div class="slideshow-wrapper">
+          <div
+            class="testimonials-slider"
+            id="Testimonials-{{ block.id }}"
+            data-dots="true"
+            data-count="{{ slide_count }}">
+            {%- for testimonial in testimonials -%}
+              <div
+                class="testimonials-slide testimonials-slide--{{ block.id }}"
+                data-index="{{ forloop.index0 }}"
+                data-aos="row-of-{{ slide_count }}"
+                {{ block.shopify_attributes }}>
+                <blockquote class="testimonials-slider__text">
+                    <span class="quote-icon">{% render "svg-icon" with 'open-quote' %}</span>
+
+                  {%- if testimonial != blank -%}
+                    <div class="rte-setting text-spacing">{{ testimonial }}</div>
+                  {%- endif -%}
+
+                    <cite>- {{ name[forloop.index0]}}</cite>
+
+                </blockquote>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+      {% if block.settings.button_url != blank %}
+        <a href="{{ block.settings.button_url }}" class="btn btn--secondary">{{ block.settings.button_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+{%- endif -%}

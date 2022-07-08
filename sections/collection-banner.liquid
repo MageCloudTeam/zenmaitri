@@ -1,0 +1,67 @@
+
+{% if section.settings.show_section == true %}
+  <div class="collection-banner__container">
+    <canvas id="collection-canvas-background" class="canvas-animated-bg"></canvas>
+    <div class="collection-banner border-10 text-center">
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h3>{{ section.settings.title }}</h3>
+      {% endif %}
+
+      <div>
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.button_url }}" class="btn">{{ block.settings.title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-Heading",
+      "default": "Help Us Guide Your Health Journey"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Need Help Finding The Right Product?"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Banner",
+      "default": true,
+      "info": "Unticking this box will hide the banner on all collection pages."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Button Text",
+          "default": "default"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,217 @@
+<div class="section-wrapper shop-by">
+  {%- if section.settings.divider -%}
+    <div class="page-width"><div class="section--divider">{% render 'svg-icon' with 'divider' %}</div></div>
+  {%- endif -%}
+
+  <div class="page-width">
+    <div id="animation-{{ section.id }}" class="text-center" style="margin-bottom: {{ section.settings.bottom_spacing }}px">
+      {% render 'animation',
+        id: section.settings.animation_id,
+        path: section.settings.path,
+        name: section.settings.name
+      %}
+    </div>
+
+    {%- if section.settings.title != blank -%}
+      <div class="section-header" style="margin-bottom: {{ section.settings.bottom_spacing }}px">
+        <h2 class="section-header__title"><span class="gradient-text with-glow">{{ section.settings.title | escape }}</span></h2>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="page-width page-width--flush-small">
+    <div class="grid-overflow-wrapper">
+      {%- if section.blocks.size > 0 -%}
+        <div class="logo-bar logo-bar--{{ section.id }}" data-aos="overflow__animation" data-slide-container>
+          {%- for block in section.blocks -%}
+            <div class="logo-bar__item" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="logo-bar__link border-link"><div class="border-link--spacer">
+              {%- endif -%}
+
+              {% if block.settings.image_svg_code != blank %}
+                {{ block.settings.image_svg_code }}
+              {% elsif block.settings.image_svg_link != blank %}
+                <img src="{{ block.settings.image_svg_link }}">
+              {% elsif block.settings.image != blank %}
+                {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                <img class="logo-bar__image lazyload"
+                    data-src="{{ img_url }}"
+                    data-widths="[180, 360, 540, 720]"
+                    data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt="{{ block.settings.image.alt }}">
+              {%- else -%}
+                {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <p class="h3 not-bold">{{ block.settings.title }}</p>
+              {% endif %}
+              {%- if block.settings.link != blank -%}
+            </div></a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="page-width" data-aos="logo__animation">
+    <div class="text-center">
+      <a href="{{ section.settings.view_all_url }}" class="btn btn--secondary white-text">
+        {% if section.settings.view_all_text != blank %}{{ section.settings.view_all_text }}{% else %}{{ 'collections.general.all_of_collection' | t }}{% endif %}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #animation-{{ section.id }} > div {
+    width: {{ section.settings.size_percent }}%;
+    max-width: {{ section.settings.max_size }}px;
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Shop By",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "text",
+        "id": "path",
+        "label": "Animation path",
+        "info": "File name for the animation json file. This must be uploaded to the theme's assets folder.",
+        "default": "animation.json"
+      },
+      {
+        "type": "text",
+        "id": "name",
+        "label": "Animation name",
+        "info": "A descriptive name for the animation",
+        "default": "Animation Name"
+      },
+      {
+        "type": "text",
+        "id": "animation_id",
+        "label": "Animation ID",
+        "info": "Must be unique and follow the example format",
+        "default": "animation-id"
+      },
+      {
+        "type": "range",
+        "id": "max_size",
+        "label": "Sizing",
+        "info": "Animation maximum size (px)",
+        "default": 400,
+        "unit": "px",
+        "max": 500,
+        "min": 50,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "size_percent",
+        "label": "Sizing",
+        "info": "Animation size (%)",
+        "default": 100,
+        "max": 100,
+        "min": 0,
+        "unit": "%",
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "bottom_spacing",
+        "label": "Bottom spacing",
+        "default": 40,
+        "max": 200,
+        "min": 0,
+        "unit": "px",
+        "step": 5
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "view_all_text",
+        "label": "View All Button Label",
+        "default": "Shop All"
+      },
+      {
+        "type": "url",
+        "id": "view_all_url",
+        "label": "View All Button URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Icon - Image",
+            "info": "Upload a PNG or JPG/JPEG file here."
+          },
+          {
+            "type": "text",
+            "id": "image_svg_link",
+            "label": "Icon - SVG Link",
+            "info": "To use an SVG for your icon: Upload an SVG via Settings > Files. Copy the link and paste it here."
+          },
+          {
+            "type": "html",
+            "id": "image_svg_code",
+            "label": "Icon - SVG Code",
+            "info": "To use an inline SVG for your icon: Paste the actual SVG code here."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Shop By",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

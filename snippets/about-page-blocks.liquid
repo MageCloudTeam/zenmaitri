@@ -1,0 +1,33 @@
+
+{% assign first_block = section.blocks | first %}
+{% if first_block.type == 'header' %}
+    {% assign top_margin = true %}
+{% endif %}
+{% assign last_block = section.blocks | last %}
+{% if last_block.type == 'large-image' or last_block.type == 'video-full' %}
+    {% assign no_bottom_margin = true %}
+{% endif %}
+
+<div class="about-page-blocks__wrapper {% if top_margin %}top-margin-space{% endif %} {% if no_bottom_margin %}about-bottom-margin-0{% endif %}">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'header' %}
+        {% render "about-page-blocks-header", block: block %}
+      {% when 'large-image' %}
+        {% render "about-page-blocks-large-image-with-text", block: block %}
+      {% when 'image-with-text' %}
+        {% render "about-page-blocks-image-with-text", block: block %}
+      {% when 'side-by-side-text' %}
+        {% render "about-page-blocks-side-text", block: block %}
+      {% when 'video' %}
+        {% render "about-page-blocks-video", block: block %}
+      {% when 'video-full' %}
+        {% render "about-page-blocks-video-full", block: block %}
+      {% when 'text-image-columns' %}
+        {% render "about-page-blocks-text-image-columns", block: block %}
+      {% when 'rich-text' %}
+        {% render "about-page-blocks-text-rich-text", block: block %}
+    {% endcase %}
+  {% endfor %}
+
+</div>

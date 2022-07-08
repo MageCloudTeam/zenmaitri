@@ -1,0 +1,124 @@
+<script>
+    var SliderDots=function(){"use strict";function a(a){this.isAnimating=!1,this.container=a,this.slides=a.querySelectorAll("[data-slide]"),this.slideCount=this.slides.length,this.wrapper=a.closest(".grid-overflow-wrapper"),"container"===this.container.dataset.slideContainer&&(this.wrapper=a),this.init()}var b=a.prototype;return b.init=function(){var a=this.wrapper.parentElement.querySelector(".dots-container");a&&(a.outerHTML=null),this.addDots(),this.wrapper.addEventListener("scroll",this.onScroll.bind(this))},b.onScroll=function(){var a=this;requestAnimationFrame(function(){if(!a.isAnimating){a.dotsContainer.querySelectorAll("button").forEach(function(a){a.classList.remove("active")});var b=Array.from(a.slides).filter(function(b){return!!a.isSlideVisible(b)})[0];a.dotsContainer.querySelector("#slide-"+b.dataset.slide).classList.add("active")}})},b.isSlideVisible=function(a){var b=a.getBoundingClientRect();return 0<=b.top&&0<=b.left&&b.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&b.right<=(window.innerWidth||document.documentElement.clientWidth)},b.addDots=function(){this.dotsContainer=document.createElement("div"),this.dotsContainer.classList.add("dots-container");for(var a,b=0;b<this.slideCount;b++)a=document.createElement("button"),a.onclick=this.changeSlide.bind(this),a.id="slide-"+b,a.innerText=b.toString(),0==b&&a.classList.add("active"),this.dotsContainer.appendChild(a);this.wrapper.parentElement.appendChild(this.dotsContainer)},b.changeSlide=function(a){a.preventDefault();var b=a.target.id.replace("slide-",""),c=this.wrapper.querySelector("[data-slide=\""+b+"\"]");if(c){this.isAnimating=!0,this.wrapper.scrollTo({top:0,left:c.offsetLeft,behavior:"smooth"}),this.dotsContainer.querySelectorAll("button").forEach(function(a){a.classList.remove("active")}),a.target.classList.add("active");var d=this;setTimeout(function(){d.isAnimating=!1},1750)}},a}();document.addEventListener("page:loaded",function(){var a=document.querySelectorAll("[data-slide-container]");a.forEach(function(a){new SliderDots(a)})}),document.addEventListener("recommendations:loaded",function(){var a=document.querySelectorAll(".product-recommendations-placeholder[data-slide-container]");a.forEach(function(a){new SliderDots(a)})});
+    {% comment %}
+    /**
+     * Script adds dots to sliders used in the theme.
+     * Requires: data-slide-container - on the wrapper of the slides
+     *           data-slide="idx" - on each slide
+     */
+    class SliderDots {
+        constructor (container) {
+            this.isAnimating = false;
+            this.container = container;
+            this.slides = container.querySelectorAll('[data-slide]');
+            this.slideCount = this.slides.length;
+            this.wrapper = container.closest('.grid-overflow-wrapper');
+            if (this.container.dataset.slideContainer === 'container') {
+                this.wrapper = container;
+            }
+
+            this.init();
+        }
+
+        init () {
+            var dots = this.wrapper.parentElement.querySelector('.dots-container');
+
+            if (dots) dots.outerHTML = null;
+
+            this.addDots();
+
+            this.wrapper.addEventListener('scroll', this.onScroll.bind(this));
+        }
+
+        onScroll () {
+            var self = this;
+            requestAnimationFrame(function () {
+                if (self.isAnimating) return;
+                self.dotsContainer
+                    .querySelectorAll('button')
+                    .forEach(function (el) {
+                        el.classList.remove('active');
+                    });
+
+                var activeSlide = Array.from(self.slides).filter(function (el) {
+                    return !!self.isSlideVisible(el);
+                })[0];
+
+                self.dotsContainer
+                    .querySelector('#slide-' + activeSlide.dataset.slide)
+                    .classList
+                    .add('active');
+            });
+        }
+
+        isSlideVisible (el) {
+            var rect = el.getBoundingClientRect();
+
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+            );
+        }
+
+        addDots () {
+            this.dotsContainer = document.createElement('div');
+            this.dotsContainer.classList.add('dots-container');
+
+            for (var i=0; i<this.slideCount; i++) {
+                var button = document.createElement('button');
+                button.onclick = this.changeSlide.bind(this);
+                button.id = 'slide-' + i;
+                button.innerText = i.toString();
+                if (i===0) button.classList.add('active');
+                this.dotsContainer.appendChild(button);
+            }
+
+            this.wrapper.parentElement.appendChild(this.dotsContainer);
+        }
+
+        changeSlide (e) {
+            e.preventDefault();
+            var slideId = e.target.id.replace('slide-', '');
+            var slide = this.wrapper.querySelector('[data-slide="' + slideId + '"]');
+            if (slide) {
+                this.isAnimating = true;
+                this.wrapper.scrollTo({
+                    top: 0,
+                    left: slide.offsetLeft,
+                    behavior: 'smooth'
+                });
+
+                this.dotsContainer
+                    .querySelectorAll('button')
+                    .forEach(function (el) {
+                        el.classList.remove('active');
+                    });
+
+                e.target.classList.add('active');
+
+                var self = this;
+                setTimeout(function () {
+                    self.isAnimating = false;
+                }, 1750);
+            }
+        }
+
+    }
+
+    document.addEventListener('page:loaded', function() {
+        var sliders = document.querySelectorAll('[data-slide-container]');
+        sliders.forEach(function (el) {
+            new SliderDots(el);
+        });
+    });
+
+    document.addEventListener('recommendations:loaded', function () {
+        var sliders = document.querySelectorAll('.product-recommendations-placeholder[data-slide-container]');
+        sliders.forEach(function (el) {
+            new SliderDots(el);
+        });
+    });
+    {% endcomment %}
+</script>

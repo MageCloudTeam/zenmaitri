@@ -1,0 +1,24 @@
+{%- liquid
+    assign contents = product.metafields.iconography.content
+    assign icons = product.metafields.iconography.icon
+-%}
+{%- if content.size > 0 or icons.size > 0 -%}
+    <div class="product-iconography">
+        {%- for content in contents limit: 6 -%}
+            {%- assign idx = forloop.index | minus: 1 -%}
+            {%- assign icon = icons[idx] | first -%}
+            <div class="product-iconography__item">
+                {%- if icon != blank -%}
+                    <div class="product-iconography__item-icon">
+                        <img data-src="{{ icon.src }}" class="lazyload" width="48" height="48" alt="icon" />
+                    </div>
+                {%- endif -%}
+                {%- if content.html != blank -%}
+                    <div class="product-iconography__item-content">
+                        {{ content.html }}
+                    </div>
+                {%- endif -%}
+            </div>
+        {%- endfor -%}
+    </div>
+{%- endif -%}

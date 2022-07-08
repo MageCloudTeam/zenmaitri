@@ -1,0 +1,65 @@
+{%- style -%}
+
+  /* ITCAvantGardeStd-Bk */
+  @font-face {
+    font-family: "ITCAvantGardeStd-Bk";
+    font-style: normal;
+    font-weight: 400;
+    font-display: fallback;
+    src: url('{{ "AvantGardeGothicITCW01Bk.woff2" | asset_url }}') format("woff2"),
+         url('{{ "AvantGardeGothicITCW01Bk.woff" | asset_url }}') format("woff");
+  }
+  /* ITCAvantGardeStd-Bk - Italic*/
+  @font-face {
+    font-family: "ITCAvantGardeStd-Bk";
+    font-style: italic;
+    font-weight: 400;
+    font-display: fallback;
+    src: url('{{ "AvantGardeGothicITCW02BkObl.woff2" | asset_url }}') format("woff2"),
+         url('{{ "AvantGardeGothicITCW02BkObl.woff" | asset_url }}') format("woff");
+  }
+  /* ITCAvantGardeStd-Bk - Bold*/
+  @font-face {
+    font-family: "ITCAvantGardeStd-Bk";
+    font-style: normal;
+    font-weight: 500;
+    font-display: fallback;
+    src: url('{{ "AvantGardeGothicITCW02Md.woff2" | asset_url }}') format("woff2"),
+         url('{{ "AvantGardeGothicITCW02Md.woff" | asset_url }}') format("woff");
+  }
+
+  :root {
+    --typeHeaderPrimary: 'ITCAvantGardeStd-Bk';
+    --typeHeaderFallback: {{ settings.type_header_font_family.fallback_families }};
+    --typeHeaderSize: 36px;
+    --typeHeaderWeight: 500;
+    --typeHeaderLineHeight: {{ settings.type_header_line_height | default: 1.4 }};
+    --typeHeaderSpacing: {{ settings.type_header_spacing | default: '25' | divided_by: 1000.00 | append: 'em' }};
+
+    --typeBasePrimary: 'ITCAvantGardeStd-Bk';
+    --typeBaseFallback:{{ settings.type_base_font_family.fallback_families }};
+    --typeBaseSize: 16px;
+    --typeBaseWeight: 400;
+    --typeBaseSpacing: 0;
+    --typeBaseLineHeight: {{ settings.type_base_line_height | default: 1.4 }};
+
+    --typeCollectionTitle: {{ settings.type_collection_size | append: 'px' }};
+
+    --iconWeight: {{ settings.icon_weight | default: '5px' }};
+    --iconLinecaps: {{ settings.icon_linecaps | default: 'miter' }};
+
+    {% if settings.button_style == 'round-slight' %}
+      --buttonRadius: 3px;
+    {% elsif settings.button_style == 'round' %}
+      --buttonRadius: 40px;
+    {% else %}
+      --buttonRadius: 0px;
+    {% endif %}
+
+    --colorGridOverlayOpacity: {{ settings.collection_grid_opacity | divided_by: 100.0 }};
+  }
+
+  .placeholder-content {
+    background-image: linear-gradient(100deg, {{ settings.color_small_image_bg }} 40%, {{ settings.color_small_image_bg | color_darken: 3 }} 63%, {{ settings.color_small_image_bg }} 79%);
+  }
+{%- endstyle -%}

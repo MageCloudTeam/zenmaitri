@@ -1,0 +1,55 @@
+{% assign first_block = section.blocks | first %}
+{% if first_block.type == 'header' %}
+    {% assign top_margin = true %}
+{% endif %}
+{% assign last_block = section.blocks | last %}
+{% if last_block.type == 'large-image' or last_block.type == 'video-full' %}
+    {% assign no_bottom_margin = true %}
+{% endif %}
+
+<div class="landing-page-blocks__wrapper {% if top_margin %}top-margin-space{% endif %} {% if no_bottom_margin %}about-bottom-margin-0{% endif %}">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'header' %}
+        {% render "about-page-blocks-header", block: block %}
+      {% when 'large-image' %}
+        {% render "about-page-blocks-large-image-with-text", block: block %}
+      {% when 'image-banner' %}
+        {% render "landing-page-blocks-header", block: block %}
+      {% when 'image-with-text' %}
+        {% render "landing-page-blocks-image-with-text", block: block %}
+      {% when 'side-by-side-text' %}
+        {% render "about-page-blocks-side-text", block: block %}
+      {% when 'video' %}
+        {% render "about-page-blocks-video", block: block %}
+      {% when 'video-full' %}
+        {% render "about-page-blocks-video-full", block: block %}
+      {% when 'text-image-columns' %}
+        {% render "landing-page-blocks-text-image-columns", block: block %}
+      {% when 'testimonials' %}
+        {% render "landing-page-blocks-testimonials", block: block %}
+      {% when 'faqs' %}
+        {% render "landing-page-blocks-faqs", block: block %}
+      {% when 'related-articles' %}
+        {% render "landing-page-blocks-related-articles", block: block %}
+      {% when 'rich-text' %}
+        {% render "about-page-blocks-text-rich-text", block: block %}
+      {% when 'blog-posts' %}
+        {% render "landing-page-blocks-blog-posts", block: block %}
+      {% when 'featured-collection' %}
+        {% render "about-page-blocks-featured-collection", block: block %}
+      {% when 'contact-form' %}
+        {% render "page-block-contact-form", block: block %}
+      {% when 'custom-html' %}
+        {% render "page-block-custom-html", block: block %}
+      {% when 'background-image-text' %}
+        {% render "page-block-background-image-text", block: block %}
+      {% when 'image-row' %}
+        {% render "page-block-image-row", block: block %}
+      {% when 'map' %}
+        {% render "page-block-map", block: block %}
+      {% when 'slideshow' %}
+        {% render "page-blocks-slideshow", block: block %}
+    {% endcase %}
+  {% endfor %}
+</div>

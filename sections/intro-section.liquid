@@ -1,0 +1,173 @@
+
+<div class="page-width white-text text-center intro-section">
+
+  <div id="animation-{{ section.id }}" class="text-center {% if section.settings.show_animation != true %}hide-on-small{% endif %}">
+    {% render 'animation',
+      id: section.settings.animation_id,
+      path: section.settings.path,
+      name: section.settings.name
+    %}
+  </div>
+
+  <h2 class="h1{% if section.settings.uppercase_title %} text-transform-upper{% endif %}{% if section.settings.subtitle != blank %} has-subtitle{% endif %}">
+      <span class="gradient-text with-glow hide-on-small">
+        {{ section.settings.title | newline_to_br }}
+      </span>
+    <span class="gradient-text with-glow hide-on-large">
+        {{ section.settings.title }}
+      </span>
+  </h2>
+  
+  {% if section.settings.subtitle != blank %}
+  <h3 class="h3{% if section.settings.uppercase_subtitle %} text-transform-upper{% endif %}">
+    <span class="gradient-text with-glow">
+      {{ section.settings.subtitle }}
+    </span>
+  </h3>
+  {% endif %}
+
+  <div class="intro-text" style="max-width: {{ section.settings.text_width }}px;">
+    <p>{{ section.settings.intro_text | newline_to_br }}</p>
+  </div>
+
+  <div class="intro-section__buttons hide-on-small">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.url }}" class="btn">{{ block.settings.title }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+{% style %}
+  #animation-{{ section.id }} > div {
+    width: {{ section.settings.size_percent }}%;
+    max-width: {{ section.settings.max_size }}px;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Intro Section",
+  "class": "index-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "text",
+      "id": "path",
+      "label": "Animation path",
+      "info": "File name for the animation json file. This must be uploaded to the theme's assets folder.",
+      "default": "animation.json"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Animation name",
+      "info": "A descriptive name for the animation",
+      "default": "Animation Name"
+    },
+    {
+      "type": "text",
+      "id": "animation_id",
+      "label": "Animation ID",
+      "info": "Must be unique and follow the example format",
+      "default": "animation-id"
+    },
+    {
+      "type": "range",
+      "id": "max_size",
+      "label": "Sizing",
+      "info": "Animation maximum size (px)",
+      "default": 400,
+      "unit": "px",
+      "max": 500,
+      "min": 50,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "size_percent",
+      "label": "Sizing",
+      "info": "Animation size (%)",
+      "default": 100,
+      "max": 100,
+      "min": 0,
+      "unit": "%",
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_animation",
+      "label": "Show Animation on mobile devices",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase_title",
+      "label": "Uppercase Title",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase_subtitle",
+      "label": "Uppercase Subtitle",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Text"
+    },
+    {
+      "type": "range",
+      "id": "text_width",
+      "label": "Text maximum width",
+      "min": 200,
+      "unit": "px",
+      "max": 650,
+      "default": 450,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intro Section",
+      "category": "Store information"
+    }
+  ]
+}
+{% endschema %}

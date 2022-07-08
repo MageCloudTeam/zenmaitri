@@ -1,0 +1,162 @@
+<div
+        class="slideshow__slide slideshow__slide--{{ id }}"
+        data-index="{{ index }}"
+        data-id="{{ id }}">
+
+    {%- style -%}
+        .slideshow__slide--{{ id }} .hero__title {
+        font-size: {{ title_size | times: 0.5 }}px;
+        }
+        @media only screen and (min-width: 769px) {
+        .slideshow__slide--{{ id }} .hero__title {
+        font-size: {{ title_size }}px;
+        }
+        }
+
+    {%- assign button_alpha = color_accent | color_extract: 'alpha' -%}
+        {% unless button_alpha == 0.0 %}
+            .slideshow__slide--{{ id }} .btn {
+            background: {{ color_accent }} !important;
+            border: none;
+
+        {%- assign accent_brightness = color_accent | color_extract: 'lightness' -%}
+
+            {% if accent_brightness > 40 %}
+                color: #000 !important;
+            {% endif %}
+            }
+
+            {% if settings.button_style == 'angled' %}
+                .slideshow__slide--{{ block.id }} .btn:before,
+                .slideshow__slide--{{ block.id }} .btn:after {
+                background: {{ color_accent }} !important;
+                border: none;
+                }
+            {% endif %}
+        {% endunless %}
+
+        {% if overlay_opacity > 0 %}
+            .slideshow__slide--{{ id }} .hero__image-wrapper:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 3;
+            background-color: #000;
+            opacity: {{ overlay_opacity | divided_by: 100.0 }};
+            }
+        {% endif %}
+    {%- endstyle -%}
+
+    {%- liquid
+        assign hero_text = false
+        assign link_slide = false
+        if top_subheading != blank or title != blank or subheading != blank or link_text != blank
+            assign hero_text = true
+        endif
+        if link != blank and link_2 == blank
+            assign link_slide = true
+        endif
+
+        assign has_mobile_image = false
+        if image_mobile != blank
+        assign has_mobile_image = true
+        endif
+    -%}
+
+    <div class="hero__image-wrapper{% unless hero_text %} hero__image-wrapper--no-overlay{% endunless %}">
+
+        {%- if parralax -%}
+        <div class="parallax-container">
+            <div class="parallax-image">
+                {%- endif -%}
+
+                {%- if image != blank -%}
+                    {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                    <img class="hero__image hero__image--{{ id }} lazyload{% if has_mobile_image %} small--hide{% endif %}"
+                         src="{{ image | img_url: '300x' }}"
+                         data-src="{{ img_url }}"
+                         data-aspectratio="{{ image.aspect_ratio }}"
+                         data-sizes="auto"
+                         alt="{{ image.alt | escape }}"
+                         style="object-position: {{ focal_point }}">
+                    {%- if has_mobile_image -%}
+                        {%- assign img_url_mobile = image_mobile | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                        <img class="hero__image hero__image--{{ block.id }} lazyload medium-up--hide"
+                             src="{{ image_mobile | img_url: '300x' }}"
+                             data-src="{{ img_url_mobile }}"
+                             data-aspectratio="{{ image_mobile.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ image_mobile.alt | escape }}"
+                             style="object-position: {{ focal_point }}">
+                    {%- endif -%}
+                    <noscript>
+                        <img class="hero__image hero__image--{{ id }}"
+                             src="{{ image | img_url: '1400x' }}"
+                             alt="{{ image.alt | escape }}">
+                    </noscript>
+                {%- else -%}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+
+                {%- if parralax -%}
+            </div>
+        </div>
+        {%- endif -%}
+    </div>
+
+    {%- if link_slide -%}
+        <a href="{{ link }}" class="hero__slide-link" aria-hidden="true"></a>
+    {%- endif -%}
+
+    {%- if hero_text -%}
+        <div class="hero__text-wrap">
+            <div class="page-width">
+                <div class="hero__text-content {{ text_align }}">
+                    <div class="hero__text-shadow">
+                        {%- unless top_subheading == blank -%}
+                            <div class="hero__top-subtitle">
+                                <div class="animation-cropper"><div class="animation-contents">
+                                        {{ top_subheading | escape }}
+                                    </div></div>
+                            </div>
+                        {%- endunless -%}
+                        {%- unless title == blank -%}
+                            <h2 class="h1 hero__title">
+                                <div class="animation-cropper"><div class="animation-contents">
+                                        {{ title | newline_to_br }}
+                                    </div></div>
+                            </h2>
+                        {%- endunless -%}
+                        {%- if subheading or link or link_2 -%}
+                            {%- unless subheading == blank -%}
+                                <div class="hero__subtitle">
+                                    <div class="animation-cropper"><div class="animation-contents">
+                                            {{ subheading | escape }}
+                                        </div></div>
+                                </div>
+                            {%- endunless -%}
+                            {%- if link_text != blank or link_text_2 != blank -%}
+                                <div class="hero__link">
+                                    {%- if link_text != blank -%}
+                                        <a href="{{ link }}" class="btn{% if color_accent contains 'rgba(0,0,0,0)' %} btn--inverse{% endif %}">
+                                            {{ link_text }}
+                                        </a>
+                                    {%- endif -%}
+                                    {%- if link_text_2 != blank -%}
+                                        <a href="{{ link_2 }}" class="btn{% if color_accent contains 'rgba(0,0,0,0)' %} btn--inverse{% endif %}">
+                                            {{ link_text_2 }}
+                                        </a>
+                                    {%- endif -%}
+                                </div>
+                            {%- endif -%}
+                        {%- endif -%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%- endif -%}
+</div>

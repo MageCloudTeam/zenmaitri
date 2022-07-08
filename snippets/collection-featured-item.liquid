@@ -1,0 +1,27 @@
+<{% if meta.link %}a{% else%}div{% endif%}
+    {% if meta.link %}href="{{ meta.link }}"{% endif %}
+    class="collection-featured-item medium-up--two-thirds grid__item"
+    data-aos="row-of-3"
+    data-index="{{ index }}"
+>
+    <img data-src="{{ image.cloudinary_src | append: 'w_715,h_452,c_crop' }}"
+         alt="{{ image.alt }}"
+         class="lazyload border-10 collection-featured-item__image"
+    />
+    <div class="collection-featured-item__content{% if left != true %} align-top{% endif %}">
+        {%- if meta.title != blank -%}
+            <div class="collection-featured-item__title">
+                {{ meta.title }}
+            </div>
+        {%- endif -%}
+
+        {%- if meta.button_text != blank -%}
+            <div class="collection-featured-item__button">
+                <div class="btn btn--primary btn--icon">
+                    {{ meta.button_text }}
+                    {% render 'svg-icon' with 'arrow-right' %}
+                </div>
+            </div>
+        {%- endif -%}
+    </div>
+</{% if meta.link %}a{% else%}div{% endif%}>

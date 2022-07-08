@@ -1,0 +1,35 @@
+{%- liquid
+    assign titles = product.metafields.tabs.title
+    assign contents = product.metafields.tabs.content
+    assign description_title = 'products.general.description' | t
+-%}
+
+<div class="product-content__tabs">
+    {%- if desc == true -%}
+        {%- capture description_content -%}
+            <div class="product-single__description-full rte">
+                {{ product.description }}
+            </div>
+        {%- endcapture -%}
+        {%- render 'product-tab', title: description_title, content: description_content, id: 'product-description-full', open: true -%}
+    {%- endif -%}
+
+    {%- if titles.size > 0 and contents.size > 0 -%}
+        {%- for title in titles -%}
+            {%- assign idx = forloop.index | minus: 1 -%}
+            {%- assign id = 'product-tab-' | append: idx -%}
+            {%- render 'product-tab', title: title, content: contents[idx].html, id: id -%}
+        {%- endfor -%}
+    {%- endif -%}
+
+    {%- if desc == true -%}
+        {%- render 'product-additional-content', product: product, section_id: section_id -%}
+    {%- endif -%}
+
+    {%- if settings.enable_product_reviews and settings.reviews_layout == 'full' -%}
+        {%- assign review_title = 'products.general.reviews' | t -%}
+        {%- assign id = 'Reviews-' | append: product.id -%}
+        {%- capture review_content -%}<div id="shopify-product-reviews{% if is_mobile %}-mobile{% endif %}" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>{%- endcapture -%}
+        {%- render 'product-tab', title: review_title, content: review_content, id: id, class: 'product-reviews product-reviews--full' -%}
+    {%- endif -%}
+</div>

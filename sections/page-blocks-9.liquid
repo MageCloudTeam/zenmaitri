@@ -1,0 +1,2084 @@
+{% render 'landing-page-blocks', section: section %}
+
+{% schema %}
+{
+  "name": "Page Blocks (9)",
+  "blocks": [
+    {
+      "type": "header",
+      "name": "Header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Example Header About Page 1"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      ]
+    },
+    {
+      "type": "large-image",
+      "name": "Large Image with Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subheading"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "overlay_colour",
+          "label": "Overlay Colour",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_amount",
+          "label": "Image Opacity",
+          "default": 100,
+          "info": "Use a dark overlay and a lower opacity to make text on top the the image more readable",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Middle"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Text on left"
+            },
+            {
+              "value": "right",
+              "label": "Text on right"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "text_has_background",
+          "label": "Add background colour to text box",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Section height",
+          "default": 450,
+          "min": 450,
+          "max": 750,
+          "step": 100,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "bottom_margin",
+          "label": "Bottom Margin",
+          "default": "normal",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable parallax",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "image-banner",
+      "name": "Image Banner with Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "overlay_colour",
+          "label": "Overlay Colour",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_amount",
+          "label": "Image Opacity",
+          "default": 100,
+          "info": "Use a dark overlay and a lower opacity to make text on top the the image more readable",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Middle"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Section height",
+          "default": 400,
+          "min": 400,
+          "max": 750,
+          "step": 50,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "bottom_margin",
+          "label": "Bottom Margin",
+          "default": "normal",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable parallax",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "image-with-text",
+      "name": "Image with Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image width",
+          "default": 500,
+          "min": 100,
+          "max": 800,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Header",
+          "default": "Header"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.</p>",
+          "info": "Requires use of HTML elements to layout correctly."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Image on left"
+            },
+            {
+              "value": "right",
+              "label": "Image on right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "mobile_layout",
+          "label": "Mobile Layout",
+          "default": "top",
+          "options": [
+            {
+              "value": "top",
+              "label": "Image on top"
+            },
+            {
+              "value": "bottom",
+              "label": "Image on bottom"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "side-by-side-text",
+      "name": "Side By Side Text",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading",
+          "default": "Left or right aligned large text next to standard text."
+        },
+        {
+          "type": "textarea",
+          "id": "main_text",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Header Position",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Header on left"
+            },
+            {
+              "value": "right",
+              "label": "Header on right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video link",
+          "accept": ["youtube", "vimeo"]
+        }
+      ]
+    },
+    {
+      "type": "text-image-columns",
+      "name": "Text And Image Columns",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "Book A Consultation"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Column One"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_1",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Two"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_2",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Three"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_3",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_3",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_3",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Four"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_4",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_4",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_4",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "name": "Testimonials",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Note: Testimonials for this section are added through Metafields for the page"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Testimonials"
+        },
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Intro Text",
+          "default": "This is what our customers are saying about us."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "align_text",
+          "label": "Text alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Centered"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "faqs",
+      "name": "FAQs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Health Consultation FAQs"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "blog-posts",
+      "name": "Blog Posts",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Blog posts"
+        },
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Intro Text"
+        },
+        {
+          "id": "blog",
+          "type": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_tags",
+          "label": "Show tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "Show date",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_comments",
+          "label": "Show comment count"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "label": "Show author"
+        },
+        {
+          "type": "checkbox",
+          "id": "view_all",
+          "label": "Show 'View all' button",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "view_all_text",
+          "label": "View All Button Label",
+          "default": "Journal"
+        },
+        {
+          "type": "select",
+          "id": "blog_image_size",
+          "label": "Image size",
+          "default": "wide",
+          "options": [
+            {
+              "value": "natural",
+              "label": "Natural"
+            },
+            {
+              "value": "square",
+              "label": "Square (1:1)"
+            },
+            {
+              "value": "landscape",
+              "label": "Landscape (4:3)"
+            },
+            {
+              "value": "portrait",
+              "label": "Portrait (2:3)"
+            },
+            {
+              "value": "wide",
+              "label": "Wide (16:9)"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "related-articles",
+      "name": "Related Articles",
+      "settings": [
+        {
+          "id": "blog",
+          "type": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Related Blog Posts"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub-Heading",
+          "default": "Blog posts about our health tinctures, capsules and more."
+        },
+        {
+          "type": "text",
+          "id": "related_tag",
+          "label": "Related Tag",
+          "default": "Consultation",
+          "info": "Enter a single tag here and any blog posts with that tag will appear here (up to a maximum of 3)"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "Show date",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "view_all",
+          "label": "Show 'View all' button",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "view_all_text",
+          "label": "View All Button Label",
+          "default": "Journal"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Featured Collection",
+      "type": "featured-collection",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Featured collection"
+        },
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Intro Text"
+        },
+        {
+          "type": "collection",
+          "id": "home_featured_products",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "per_row",
+          "label": "Products per row",
+          "default": 4,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "rows",
+          "label": "Rows of products",
+          "default": 1,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "mobile_scrollable",
+          "label": "Enable swipe on mobile",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "view_all",
+          "label": "Show 'View all' link",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "view_all_text",
+          "label": "View All Button Label",
+          "default": "Shop All"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "contact-form",
+      "name": "Contact form",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "All submissions are sent to the customer email address of your store. [Learn more](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions)."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_phone",
+          "label": "Show phone number"
+        },
+        {
+          "type": "checkbox",
+          "id": "narrow_column",
+          "label": "Narrow column",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full page width",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "space_around",
+          "label": "Add spacing above and below",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "code",
+          "label": "HTML",
+          "default": "<h2>Custom HTML</h2><p>Use this advanced section to build your own layouts or to add custom HTML or scripts.</p>"
+        }
+      ]
+    },
+    {
+      "type": "background-image-text",
+      "name": "Large image with text box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Impressive"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Large image with text box"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Middle"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Text on left"
+            },
+            {
+              "value": "right",
+              "label": "Text on right"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Section height",
+          "default": 550,
+          "min": 450,
+          "max": 750,
+          "step": 100,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable parallax",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "name": "Map",
+      "settings": [
+        {
+          "id": "map_title",
+          "type": "text",
+          "label": "Title",
+          "default": "Our retail store"
+        },
+        {
+          "id": "address",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>301 Front St W<br>Toronto, Canada</p><p>Mon - Fri, 8:30am - 10:30pm<br>Saturday, 8:30am - 10:30pm<br>Sunday, 8:30am - 10:30pm</p>"
+        },
+        {
+          "id": "map_address",
+          "type": "text",
+          "label": "Map address",
+          "info": "Google maps will find the exact location",
+          "default": "301 Front St W, Toronto, ON M5V 2T6"
+        },
+        {
+          "id": "api_key",
+          "type": "text",
+          "label": "Google Maps API key",
+          "info": "You'll need to [register a Google Maps API Key](https://help.shopify.com/manual/using-themes/troubleshooting/map-section-api-key) to display the map"
+        },
+        {
+          "id": "show_button",
+          "type": "checkbox",
+          "label": "Show 'Get directions' button",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Image",
+          "info": "Displayed if the map isn’t loaded"
+        },
+        {
+          "type": "select",
+          "id": "background_image_position",
+          "label": "Image focal point",
+          "default": "center center",
+          "options": [
+            {
+              "label": "Top left",
+              "value": "top left"
+            },
+            {
+              "label": "Top center",
+              "value": "top center"
+            },
+            {
+              "label": "Top right",
+              "value": "top right"
+            },
+            {
+              "label": "Middle left",
+              "value": "center left"
+            },
+            {
+              "label": "Middle center",
+              "value": "center center"
+            },
+            {
+              "label": "Middle right",
+              "value": "center right"
+            },
+            {
+              "label": "Bottom left",
+              "value": "bottom left"
+            },
+            {
+              "label": "Bottom center",
+              "value": "bottom center"
+            },
+            {
+              "label": "Bottom right",
+              "value": "bottom right"
+            }
+          ],
+          "info": "Used to keep the subject of your photo in view."
+        }
+      ]
+    },
+    {
+      "type": "image-row",
+      "name": "Row of images",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "url",
+          "id": "image_1_link",
+          "label": "Link 1",
+          "info": "Optional"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "url",
+          "id": "image_2_link",
+          "label": "Link 2",
+          "info": "Optional"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "url",
+          "id": "image_3_link",
+          "label": "Link 3",
+          "info": "Optional"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "url",
+          "id": "image_4_link",
+          "label": "Link 4",
+          "info": "Optional"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_gutter",
+          "label": "Add spacing",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_zoom",
+          "label": "Enable image zoom",
+          "info": "Not active if any image links set",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Slideshow",
+      "type": "slideshow",
+      "settings": [
+        {
+          "type": "select",
+          "id": "section_height",
+          "label": "Desktop height",
+          "default": "650px",
+          "options": [
+            {
+              "label": "Natural",
+              "value": "natural"
+            },
+            {
+              "label": "450px",
+              "value": "450px"
+            },
+            {
+              "label": "550px",
+              "value": "550px"
+            },
+            {
+              "label": "650px",
+              "value": "650px"
+            },
+            {
+              "label": "750px",
+              "value": "750px"
+            },
+            {
+              "label": "Full screen",
+              "value": "100vh"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "mobile_height",
+          "label": "Mobile height",
+          "default": "auto",
+          "options": [
+            {
+              "label": "Auto",
+              "value": "auto"
+            },
+            {
+              "label": "250px",
+              "value": "250px"
+            },
+            {
+              "label": "300px",
+              "value": "300px"
+            },
+            {
+              "label": "400px",
+              "value": "400px"
+            },
+            {
+              "label": "500px",
+              "value": "500px"
+            },
+            {
+              "label": "Full screen",
+              "value": "100vh"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable parallax",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Slide navigation style",
+          "default": "bars",
+          "options": [
+            {
+              "value": "minimal",
+              "label": "Minimal"
+            },
+            {
+              "value": "arrows",
+              "label": "Arrows"
+            },
+            {
+              "value": "bars",
+              "label": "Bars"
+            },
+            {
+              "value": "dots",
+              "label": "Dots"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Auto-change slides",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "autoplay_speed",
+          "label": "Change images every",
+          "default": 7,
+          "min": 5,
+          "max": 10,
+          "step": 1,
+          "unit": "s"
+        },
+
+
+        {
+          "type": "header",
+          "content": "Slide 1"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading_1",
+          "label": "Subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "title_1",
+          "label": "Heading",
+          "default": "Two line\ntitle slide."
+        },
+        {
+          "type": "range",
+          "id": "title_size_1",
+          "label": "Heading text size",
+          "default": 80,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading_1",
+          "label": "Text",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "link_text_1",
+          "label": "Slide link text",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2_1",
+          "label": "Slide link 2"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2_1",
+          "label": "Slide link text 2"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_1",
+          "label": "Buttons",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_align_1",
+          "label": "Text alignment",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "Center left"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "Center"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "Center right"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile_1",
+          "label": "Mobile image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_1",
+          "label": "Text protection",
+          "info": "Darkens your image to ensure your text is readable",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point_1",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+
+
+
+        {
+          "type": "header",
+          "content": "Slide 2"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading_2",
+          "label": "Subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "title_2",
+          "label": "Heading",
+          "default": "Two line\ntitle slide."
+        },
+        {
+          "type": "range",
+          "id": "title_size_2",
+          "label": "Heading text size",
+          "default": 80,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading_2",
+          "label": "Text",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2",
+          "label": "Slide link text",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2_2",
+          "label": "Slide link 2"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2_2",
+          "label": "Slide link text 2"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_2",
+          "label": "Buttons",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_align_2",
+          "label": "Text alignment",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "Center left"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "Center"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "Center right"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile_2",
+          "label": "Mobile image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_2",
+          "label": "Text protection",
+          "info": "Darkens your image to ensure your text is readable",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point_2",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+
+
+
+
+        {
+          "type": "header",
+          "content": "Slide 3"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading_3",
+          "label": "Subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "title_3",
+          "label": "Heading",
+          "default": "Two line\ntitle slide."
+        },
+        {
+          "type": "range",
+          "id": "title_size_3",
+          "label": "Heading text size",
+          "default": 80,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading_3",
+          "label": "Text",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link_3",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "link_text_3",
+          "label": "Slide link text",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2_3",
+          "label": "Slide link 2"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2_3",
+          "label": "Slide link text 2"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_3",
+          "label": "Buttons",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_align_3",
+          "label": "Text alignment",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "Center left"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "Center"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "Center right"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile_3",
+          "label": "Mobile image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_3",
+          "label": "Text protection",
+          "info": "Darkens your image to ensure your text is readable",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point_3",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+
+
+
+        {
+          "type": "header",
+          "content": "Slide 4"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading_4",
+          "label": "Subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "title_4",
+          "label": "Heading",
+          "default": "Two line\ntitle slide."
+        },
+        {
+          "type": "range",
+          "id": "title_size_4",
+          "label": "Heading text size",
+          "default": 80,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading_4",
+          "label": "Text",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link_4",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "link_text_4",
+          "label": "Slide link text",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2_4",
+          "label": "Slide link 2"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2_4",
+          "label": "Slide link text 2"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_4",
+          "label": "Buttons",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_align_4",
+          "label": "Text alignment",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "Center left"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "Center"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "Center right"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile_4",
+          "label": "Mobile image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_4",
+          "label": "Text protection",
+          "info": "Darkens your image to ensure your text is readable",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point_4",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+
+
+
+        {
+          "type": "header",
+          "content": "Slide 5"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading_5",
+          "label": "Subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "title_5",
+          "label": "Heading",
+          "default": "Two line\ntitle slide."
+        },
+        {
+          "type": "range",
+          "id": "title_size_5",
+          "label": "Heading text size",
+          "default": 80,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading_5",
+          "label": "Text",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link_5",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "link_text_5",
+          "label": "Slide link text",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2_5",
+          "label": "Slide link 2"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2_5",
+          "label": "Slide link text 2"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_5",
+          "label": "Buttons",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_align_5",
+          "label": "Text alignment",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "Center left"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "Center"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "Center right"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile_5",
+          "label": "Mobile image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_5",
+          "label": "Text protection",
+          "info": "Darkens your image to ensure your text is readable",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point_5",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        }
+
+
+      ]
+
+    }
+  ]
+}
+{% endschema %}

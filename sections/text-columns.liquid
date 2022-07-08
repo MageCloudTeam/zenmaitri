@@ -1,0 +1,228 @@
+{%- if section.settings.divider -%}
+  <div class="page-width"><div class="section--divider">{% render 'svg-icon' with 'divider' %}</div></div>
+{%- endif -%}
+
+<div class="text-columns--with-images">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header text-left spacing--smaller small--text-center">
+        <h2 class="h1">{{ section.settings.title }}</h2>
+        <div class="flex-row">
+          {% if section.settings.intro_text != blank %}
+            <p class="hide-on-small">{{ section.settings.intro_text | escape }}</p>
+          {% endif %}
+          {% if section.settings.link_url != blank %}
+            <a href="{{ section.settings.link_url }}" class="bronze-link center-on-small">{{ section.settings.link_text }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="page-width page-width--flush-small">
+    <div class="grid-overflow-wrapper">
+      <div class="grid{% unless section.blocks.size == 5 %} grid--uniform{% endunless %} grid--flush-bottom" data-aos="overflow__animation" data-slide-container="container">
+        {%- liquid
+          assign grid_item_width = 'medium-up--one-third'
+          case section.blocks.size
+            when 1
+              assign grid_item_width = 'medium-up--one-half'
+            when 2
+              assign grid_item_width = 'medium-up--one-half'
+            when 4
+              assign grid_item_width = 'medium-up--one-half'
+          endcase
+        -%}
+        {%- for block in section.blocks -%}
+          {%- if section.blocks.size == 5 and forloop.index < 3 -%}
+            {%- assign column_width = 'medium-up--one-half' -%}
+          {%- else -%}
+            {%- assign column_width = grid_item_width -%}
+          {%- endif -%}
+          <div data-slide="{{ forloop.index0 }}" class="grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }} data-aos="row-of-3">
+            <div class="grid__item--wrap">
+              {%- if block.settings.enable_image -%}
+                <div style="{% if section.settings.align_text == 'center' %}margin: 0 auto;{% endif %} max-width: {{ block.settings.image_width }}px;">
+                  {%- if block.settings.button_link != blank -%}
+                  <a href="{{ block.settings.button_link }}">
+                    {%- endif -%}
+                    {%- if block.settings.image != blank -%}
+                      <div class="image-wrap text-spacing grid__image-ratio grid__image-ratio--square">
+                        {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                        <img class="lazyload border-10"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080]"
+                             data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ block.settings.image.alt }}">
+                      </div>
+                    {%- else -%}
+                      <div class="image-wrap text-spacing">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.button_link != blank -%}
+                  </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 {% if block.settings.smaller_heading == true %}class="h4 text-transform-none"{% endif %}>{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="rte-setting {% if block.settings.lighter_text == true %}lighter-text-colour{% endif %}{% if block.settings.smaller_text == true %}smaller-text{% endif %}">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.button_label != blank -%}
+                <a href="{{ block.settings.button_link }}" class="btn btn--secondary btn--small">
+                  {{ block.settings.button_label }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Text columns with images",
+    "class": "index-section index-section--small light-background",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "intro_text",
+        "label": "Intro Text"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text",
+        "default": "Learn More"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": "Show image",
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "range",
+            "id": "image_width",
+            "label": "Image width",
+            "default": 650,
+            "min": 60,
+            "max": 650,
+            "step": 10,
+            "unit": "px"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Example title"
+          },
+          {
+            "type": "checkbox",
+            "id": "smaller_heading",
+            "label": "Smaller Heading",
+            "default": false
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "smaller_text",
+            "label": "Smaller Text",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "lighter_text",
+            "label": "Use lighter text colour",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "Optional button"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text columns with images",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

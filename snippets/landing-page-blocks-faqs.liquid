@@ -1,0 +1,36 @@
+{% liquid
+  assign questions = page.metafields.landing_page.question
+  assign answer = page.metafields.landing_page.answer
+%}
+
+{% if questions != blank %}
+  {%- if block.settings.divider -%}
+    <div class="page-width"><div class="section--divider">{% render 'svg-icon' with 'divider' %}</div></div>
+  {%- endif -%}
+
+  <div class="page-width">
+    <div class="collection-faqs">
+      {%- if block.settings.title != blank -%}
+        <header class="section-header">
+          <h2 class="section-header__title">
+            {{ block.settings.title | escape }}
+          </h2>
+        </header>
+      {%- endif -%}
+
+      {% for question in questions %}
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ forloop.index0 }}">
+            {%- render 'collapsible-icons-alt', no_circle: true -%}
+            <span itemprop="name">{{ question }}</span>
+          </button>
+          <div id="FAQ-content-{{ forloop.index0 }}" class="collapsible-content collapsible-content--all" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div class="collapsible-content__inner collapsible-content__inner--faq rte" itemprop="text">
+              {{ answer[forloop.index0]}}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

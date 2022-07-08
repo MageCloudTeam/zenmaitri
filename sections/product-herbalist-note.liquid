@@ -1,0 +1,98 @@
+{% liquid
+  assign note_title = product.metafields.herbalist_note.title
+  assign note_content = product.metafields.herbalist_note.content
+  assign note_name = product.metafields.herbalist_note.name
+  assign note_role = product.metafields.herbalist_note.role
+  assign note_image = product.metafields.herbalist_note.image
+%}
+
+{% if note_image != blank %}
+  {% for bg_image in note_image %}
+    {% assign bg_aspect_ratio = bg_image.aspect_ratio %}
+    {% assign bg_alt = bg_image.alt %}
+    {% assign bg_src = bg_image.src %}
+    {% assign bg_cloudinary_src = bg_image.cloudinary_src %}
+  {% endfor %}
+{% endif %}
+
+
+{% if note_title != blank %}
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="background-image"
+  class="herbalist-note__wrapper background-media-text background-media-text--{{ section.id }} background-media-text--{{ section.settings.height }} loaded"
+  data-aos="background-media-text__animation">
+  <div class="background-media-text__container">
+    <img
+      class="non-parallax-image-fix background-media-text__image background-media-text__image--{{ section.id }} lazyload"
+      src=""
+      data-src="{{ bg_src }}"
+      data-aspectratio="{{ bg_aspect_ratio }}"
+      data-widths="[720, 900, 1080, 1800, 2400]"
+      data-sizes="auto"
+      alt="{{ bg_alt | escape }}"
+      style="object-position: center;">
+    <noscript>
+      <img
+        class="image-fit background-media-text__image background-media-text__image--{{ section.id }} lazyloaded"
+        src="{{ bg_cloudinary_src | append: 'w_1800' }}"
+        alt="{{ bg_alt | escape }}">
+    </noscript>
+  </div>
+  <div class="background-media-text__inner background-media-text__inner--has-background">
+    <div class="background-media-text__aligner background-media-text--right">
+      <div class="animation-cropper">
+        <div class="animation-contents">
+          <div class="background-media-text__text border-10">
+            {% if section.settings.title %}
+              <p class="h4">{{ section.settings.title }}</p>
+            {% endif %}
+            {% if note_title %}
+              <h3>"{{ note_title }}"</h3>
+            {% endif %}
+            {% if note_content %}
+              <div class="rte background-media-text__subtext note-content">{{ note_content }}</div>
+            {% endif %}
+            {% if note_name %}
+              <p class="note-name">{{ note_name }}</p>
+            {% endif %}
+            {% if note_role %}
+              <p class="note-role">{{ note_role }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="herbalist-note__spacer background-media-text__spacer background-media-text--{{ section.settings.height }}"></div>
+
+
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Herbalist Note",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Shared Heading",
+      "default": "Herbalist Note",
+      "info": "All other content is added on a product-by-product basis using metafields."
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Section height",
+      "default": 650,
+      "min": 450,
+      "max": 750,
+      "step": 100,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}

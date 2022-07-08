@@ -1,0 +1,478 @@
+{% render 'landing-page-blocks', section: section %}
+
+{% schema %}
+{
+  "name": "Meditation Page",
+  "blocks": [
+    {
+      "type": "image-banner",
+      "name": "Image Banner with Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "overlay_colour",
+          "label": "Overlay Colour",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_amount",
+          "label": "Image Opacity",
+          "default": 100,
+          "info": "Use a dark overlay and a lower opacity to make text on top the the image more readable",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "select",
+          "id": "focal_point",
+          "label": "Image focal point",
+          "info": "Used to keep the subject of your photo in view.",
+          "default": "center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "Top left"
+            },
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "80% 0",
+              "label": "Top right"
+            },
+            {
+              "value": "20% 50%",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Middle"
+            },
+            {
+              "value": "80% 50%",
+              "label": "Right"
+            },
+            {
+              "value": "20% 100%",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "80% 100%",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Section height",
+          "default": 400,
+          "min": 400,
+          "max": 750,
+          "step": 50,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "bottom_margin",
+          "label": "Bottom Margin",
+          "default": "normal",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "parallax",
+          "label": "Enable parallax",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "image-with-text",
+      "name": "Image with Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image width",
+          "default": 500,
+          "min": 100,
+          "max": 800,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Header",
+          "default": "Header"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.</p>",
+          "info": "Requires use of HTML elements to layout correctly."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Image on left"
+            },
+            {
+              "value": "right",
+              "label": "Image on right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "mobile_layout",
+          "label": "Mobile Layout",
+          "default": "top",
+          "options": [
+            {
+              "value": "top",
+              "label": "Image on top"
+            },
+            {
+              "value": "bottom",
+              "label": "Image on bottom"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text-image-columns",
+      "name": "Text And Image Columns",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "Book An Appointment"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Column One"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_1",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Two"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_2",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Three"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_3",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_3",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_3",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Column Four"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+          "type": "textarea",
+          "id": "text_4",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "button_label_4",
+          "label": "Button label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_4",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "name": "Testimonials",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Note: Testimonials for this section are added through Metafields for the page"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Testimonials"
+        },
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Intro Text",
+          "default": "This is what our customers are saying about us."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "align_text",
+          "label": "Text alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Centered"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "faqs",
+      "name": "FAQs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Meditation FAQs"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "related-articles",
+      "name": "Related Articles",
+      "settings": [
+        {
+          "id": "blog",
+          "type": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Related Blog Posts"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub-Heading",
+          "default": "Blog posts about our health tinctures, capsules and more."
+        },
+        {
+          "type": "text",
+          "id": "related_tag",
+          "label": "Related Tag",
+          "default": "Meditation",
+          "info": "Enter a single tag here and any blog posts with that tag will appear here (up to a maximum of 3)"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "Show date",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "view_all",
+          "label": "Show 'View all' button",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "view_all_text",
+          "label": "View All Button Label",
+          "default": "Journal"
+        },
+        {
+          "type": "checkbox",
+          "id": "divider",
+          "label": "Show section divider",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

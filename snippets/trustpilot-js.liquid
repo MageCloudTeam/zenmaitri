@@ -1,0 +1,14 @@
+<script>
+    document.addEventListener("DOMContentLoaded",function(){var t;document.querySelector(".trustpilot-widget")&&((t=document.createElement("script")).src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js",t.async=!0,t.id="async-trustpilot-script",document.body.appendChild(t))});
+    {%- comment -%}// Only loads trustpilot if widget exists{%- endcomment -%}
+    document.addEventListener('DOMContentLoaded', function () {
+        var trustpilotSelector = '.trustpilot-widget';
+        if (document.querySelector(trustpilotSelector)) {
+            var s = document.createElement('script');
+            s.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+            s.async = true;
+            s.id = 'async-trustpilot-script'
+            document.body.appendChild(s);
+        }
+    });
+</script>

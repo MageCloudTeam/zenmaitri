@@ -1,0 +1,106 @@
+
+{% liquid
+  assign overlay_colour = section.settings.overlay_colour
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+%}
+
+{% if section.settings.show_section == true %}
+  <div class="page-width">
+    <div class="grid grid--uniform product-square-banners">
+      {% for block in section.blocks %}
+        <div class="grid__item medium-up--one-half text-center border-10 background-{{ block.id }}">
+          <div class="product-square-banner border-10">
+            <div class="overlay border-10" style="background-color: {{ overlay_colour | color_modify: 'alpha', overlay_opacity }}"></div>
+            <div class="text-content white-text">
+              {% if block.settings.sub_header != blank %}
+                <p>{{ block.settings.sub_header }}</p>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <h2 class="text-transform-upper">{{ block.settings.title }}</h2>
+              {% endif %}
+              {% if block.settings.button_url != blank %}
+                <a href="{{ block.settings.button_url }}" class="btn btn--secondary btn--filled--dark">{{ block.settings.button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <style media="screen">
+          .background-{{ block.id }} .product-square-banner {
+            background-image: url({{ block.settings.image | img_url: '1000x1000' }});
+            background-position: 50% 50%;
+            background-size: cover;
+          }
+        </style>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+
+
+{% schema %}
+{
+  "name": "Square Banners",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Banners",
+      "default": true,
+      "info": "Unticking this box will hide the banners on all product pages."
+    },
+    {
+      "type": "color",
+      "id": "overlay_colour",
+      "label": "Overlay Colour",
+      "default": "#000000",
+      "info": "Colour overlay on the image to help with readability of the text"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "default": 50,
+      "info": "Opacity of the colour overlay",
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sub_header",
+          "label": "Sub-Header"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

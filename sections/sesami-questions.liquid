@@ -1,0 +1,161 @@
+<script type="application/json" id="sesami-questions">
+    [
+        {% for block in section.blocks %}{
+            "type": {{ block.type | json }},
+            "settings": {{ block.settings | json }}
+        }{% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+</script>
+<a href="#SesamiModal" class="js-modal-open-sesami-modal" style="display:none;">
+   Open modal
+</a>
+<div id="SesamiModal" class="modal modal--square">
+    <div class="modal__inner modal__skinny">
+        <div class="modal__centered text-center">
+            <div class="modal__centered-content sesami-modal-wrap">
+                {% if section.settings.heading != blank %}
+                    <span class="h3">
+                        {{ section.settings.heading }}
+                    </span>
+                {% endif %}
+                {% if section.settings.note != blank %}
+                    {{ section.settings.note }}
+                {% endif %}
+                <div id="sesami-questions-modal-wrap"></div>
+                <button type="submit" class="js-sesami-submit btn btn--secondary">
+                    {{ section.settings.submit_text | default: "Submit" }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sesami Questions",
+  "settings": [
+    {
+        "type": "text",
+        "label": "Heading",
+        "default": "Pre-Consultation Form",
+        "id": "heading"
+    },
+    {
+        "type": "richtext",
+        "label": "Note",
+        "default": "<p>Please provide as much detail ahead of your consultation with the Zen Maitri team.</p>",
+        "id": "note"
+    },
+    {
+        "type": "text",
+        "label": "Submit text",
+        "default": "Submit",
+        "id": "submit_text"
+    }
+  ],
+  "blocks": [
+    {
+        "name": "Text question",
+        "type": "text",
+        "settings": [
+            {
+              "type": "text",
+              "id": "label",
+              "label": "Label",
+              "default": "Email address"
+            },
+            {
+              "type": "text",
+              "id": "placeholder",
+              "label": "Placeholder",
+              "default": "Email address"
+            },
+            {
+              "type": "checkbox",
+              "id": "required",
+              "label": "Required?",
+              "default": false
+            }
+        ]
+    },
+    {
+        "name": "Option selection",
+        "type": "select",
+        "settings": [
+            {
+              "type": "text",
+              "id": "label",
+              "label": "Label",
+              "default": "Select one"
+            },
+            {
+              "type": "textarea",
+              "id": "options",
+              "label": "Options",
+              "info": "Add one option per line"
+            },
+            {
+              "type": "checkbox",
+              "id": "required",
+              "label": "Required?",
+              "default": false
+            }
+        ]
+    },
+    {
+        "name": "Radio selection",
+        "type": "radio",
+        "settings": [
+            {
+              "type": "text",
+              "id": "label",
+              "label": "Label",
+              "default": "Select one"
+            },
+            {
+              "type": "textarea",
+              "id": "options",
+              "label": "Options",
+              "info": "Add one option per line"
+            },
+            {
+              "type": "checkbox",
+              "id": "required",
+              "label": "Required?",
+              "default": false
+            }
+        ]
+    },
+    {
+        "name": "Checkbox",
+        "type": "checkbox",
+        "settings": [
+            {
+              "type": "text",
+              "id": "label",
+              "label": "Label",
+              "default": "Checkbox"
+            },
+            {
+              "type": "checkbox",
+              "id": "required",
+              "label": "Required?",
+              "default": false
+            }
+        ]
+    },
+    {
+        "name": "Text note",
+        "type": "text-note",
+        "settings": [
+            {
+              "type": "richtext",
+              "id": "note",
+              "label": "Note",
+              "default": "<p>Note</p>"
+            }
+        ]
+    }
+  ]
+}
+{% endschema %}

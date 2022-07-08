@@ -1,0 +1,106 @@
+{%- liquid
+  assign custom_subtitle = product.metafields.zen.related_blog_post_subtitle
+
+  assign blog = blogs[section.settings.blog]
+  assign post_limit = 3
+  assign title = section.settings.title
+  assign sub_title = section.settings.sub_title
+
+  assign blog_image_size = "wide"
+
+  assign has_tag = false
+  for product_tag in product.tags
+    for blog_tag in blog.all_tags
+      if product.tags contains blog_tag
+        assign has_tag = true
+        assign current_product_tag = product_tag
+      endif
+    endfor
+  endfor
+
+  assign postCount = 0
+-%}
+{% if has_tag == true %}
+  {% if blog.articles.size != 0 %}
+    <div class="page-width latest-blog-posts collection-blog-posts">
+      {%- if title != blank -%}
+        <header class="section-header">
+          <h2 class="section-header__title">
+            {{ title | escape }}
+          </h2>
+          {% if custom_subtitle != blank %}
+            <p>{{ custom_subtitle }}</p>
+          {% elsif sub_title != blank %}
+            <p>{{ sub_title }}</p>
+          {% endif %}
+        </header>
+      {%- endif -%}
+
+      <div class="grid grid--uniform">
+        {%- for article in blog.articles -%}
+          {% if article.tags contains current_product_tag %}
+            {%- assign postCount = postCount | plus: 1 -%}
+            {%- render 'article-grid-item',
+              blog: blog,
+              article: article,
+              grid_item_width: 'medium-up--one-third',
+              per_row: '3',
+              image_size: blog_image_size
+            -%}
+            {%- if postCount == post_limit -%}{% break %}{%- endif -%}
+          {% endif %}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.view_all -%}
+        <div class="text-center"><a href="{{ blog.url }}"  class="btn btn--secondary section-header__link">{% if section.settings.view_all_text != blank %}{{ section.settings.view_all_text }}{% else %}{{ 'blogs.article.view_all' | t }}{% endif %}</a></div>
+      {%- endif -%}
+
+    </div>
+  {% endif %}
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Related Blog Posts",
+  "settings": [
+    {
+      "id": "blog",
+      "type": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Related Blog Posts"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub-Heading",
+      "default": "Blog posts about our health tinctures, capsules and more.",
+      "info": "This can be over-written on a product by product basis through each product metafields"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "view_all",
+      "label": "Show 'View all' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Label",
+      "default": "Journal"
+    }
+  ]
+}
+{% endschema %}

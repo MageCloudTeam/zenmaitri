@@ -1,0 +1,200 @@
+<div
+  data-section-id="{{ block.id }}"
+  data-section-type="slideshow-section"
+  {% if block.settings.parallax %}data-parallax="true"{% endif %}
+        {{ block.shopify_attributes }}
+>
+
+    <div class="slideshow-wrapper">
+        {%- if block.settings.autoplay and block.settings.style == 'bars' -%}
+            {%- style -%}
+                [data-bars][data-autoplay="true"] .flickity-page-dots .dot:after {
+                animation-duration: {{ block.settings.autoplay_speed | times: 1000 }}ms;
+                }
+            {%- endstyle -%}
+
+            <button type="button" class="visually-hidden slideshow__pause" data-id="{{ block.id }}" aria-live="polite">
+          <span class="slideshow__pause-stop">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pause" viewBox="0 0 10 13"><g fill="#000" fill-rule="evenodd"><path d="M0 0h3v13H0zM7 0h3v13H7z"/></g></svg>
+            <span class="icon__fallback-text">{{ 'sections.slideshow.pause_slideshow' | t }}</span>
+          </span>
+                <span class="slideshow__pause-play">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
+            <span class="icon__fallback-text">{{ 'sections.slideshow.play_slideshow' | t }}</span>
+          </span>
+            </button>
+        {%- endif -%}
+
+        {%- assign natural_height = false -%}
+        {%- assign natural_mobile_height = false -%}
+        {%- if block.settings.section_height == 'natural' or block.settings.mobile_height == 'auto' -%}
+            {% comment %}
+                Get first image's aspect ratio
+            {% endcomment %}
+
+            {%- if block.settings.image_1 != blank -%}
+                {%- if block.settings.section_height == 'natural' %}
+                    {%- assign natural_height = true -%}
+                    {%- capture natural_height_ratio -%}{{ 100 | divided_by: block.settings.image_1.aspect_ratio }}%{% endcapture %}
+                {%- endif -%}
+            {%- endif -%}
+            {%- if block.settings.image_mobile_1 != blank -%}
+                {%- if block.settings.mobile_height == 'auto' -%}
+                    {%- assign natural_mobile_height = true -%}
+                    {%- capture natural_mobile_height_ratio -%}{{ 100 | divided_by: block.settings.image_mobile_1.aspect_ratio }}%{% endcapture %}
+                {%- endif -%}
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if natural_height -%}
+            {%- style -%}
+                @media only screen and (min-width: 769px) {
+                .hero-natural--{{ block.id }} {
+                height: 0;
+                padding-bottom: {{ natural_height_ratio }};
+                }
+                }
+            {%- endstyle -%}
+        {%- endif -%}
+        {%- if natural_mobile_height -%}
+            {%- style -%}
+                @media screen and (max-width: 768px) {
+                .hero-natural-mobile--{{ block.id }} {
+                height: 0;
+                padding-bottom: {{ natural_mobile_height_ratio }};
+                }
+                }
+            {%- endstyle -%}
+        {%- endif -%}
+
+        <div class="{% if natural_height %}hero-natural--{{ block.id }}{% endif %}{% if natural_mobile_height %} hero-natural-mobile--{{ block.id }}{% endif %}">
+            <div id="Slideshow-{{ block.id }}"
+                 class="hero hero--{{ block.settings.section_height }} hero--{{ block.id }} hero--mobile--{{ block.settings.mobile_height }} loading loading--delayed"
+                    {% if natural_height %}
+                        data-natural="true"
+                    {% endif %}
+                 data-mobile-natural="{{ natural_mobile_height }}"
+                 data-autoplay="{{ block.settings.autoplay }}"
+                 data-speed="{{ block.settings.autoplay_speed | times: 1000 }}"
+                    {% if block.settings.style == 'arrows' %}
+                        data-arrows="true"
+                    {% endif %}
+                    {% if block.settings.style == 'dots' %}
+                        data-dots="true"
+                    {% endif %}
+                    {% if block.settings.style == 'bars' %}
+                        data-dots="true"
+                        data-bars="true"
+                    {% endif %}
+                    {%- assign count = 0 -%}
+                    {%- if block.settings.image_1 -%}{% assign count = count | plus: 1 %}{%- endif -%}
+                    {%- if block.settings.image_2 -%}{% assign count = count | plus: 1 %}{%- endif -%}
+                    {%- if block.settings.image_3 -%}{% assign count = count | plus: 1 %}{%- endif -%}
+                    {%- if block.settings.image_4 -%}{% assign count = count | plus: 1 %}{%- endif -%}
+                    {%- if block.settings.image_5 -%}{% assign count = count | plus: 1 %}{%- endif -%}
+                 data-slide-count="{{ count }}">
+
+                {%- if block.settings.image_1 -%}
+                    {% render 'page-blocks-slideshow-slide'
+                        parralax: section.settings.parallax,
+                        id: 'slide-1',
+                        index: 0,
+                        color_accent: block.settings.color_accent_1,
+                        overlay_opacity: block.settings.overlay_opacity_1,
+                        top_subheading: block.settings.top_subheading_1,
+                        title: block.settings.title_1,
+                        subheading: block.settings.subheading_1,
+                        link_text: block.settings.link_text_1,
+                        link_text_2: block.settings.link_text_2_1,
+                        link: block.settings.link_1,
+                        link_2: block.settings.link_2_1,
+                        image_mobile: block.settings.image_mobile_1,
+                        image: block.settings.image_1,
+                        focal_point: block.settings.focal_point_1,
+                        text_align: block.settings.text_align_1
+                    %}
+                {%- endif -%}
+                {%- if block.settings.image_2 -%}
+                    {% render 'page-blocks-slideshow-slide'
+                        parralax: section.settings.parallax,
+                        id: 'slide-2',
+                        index: 1,
+                        color_accent: block.settings.color_accent_2,
+                        overlay_opacity: block.settings.overlay_opacity_2,
+                        top_subheading: block.settings.top_subheading_2,
+                        title: block.settings.title_2,
+                        subheading: block.settings.subheading_2,
+                        link_text: block.settings.link_text_2,
+                        link_text_2: block.settings.link_text_2_2,
+                        link: block.settings.link_2,
+                        link_2: block.settings.link_2_2,
+                        image_mobile: block.settings.image_mobile_2,
+                        image: block.settings.image_2,
+                        focal_point: block.settings.focal_point_2,
+                        text_align: block.settings.text_align_2
+                    %}
+                {%- endif -%}
+                {%- if block.settings.image_3 -%}
+                    {% render 'page-blocks-slideshow-slide'
+                        parralax: section.settings.parallax,
+                        id: 'slide-3',
+                        index: 2,
+                        color_accent: block.settings.color_accent_3,
+                        overlay_opacity: block.settings.overlay_opacity_3,
+                        top_subheading: block.settings.top_subheading_3,
+                        title: block.settings.title_3,
+                        subheading: block.settings.subheading_3,
+                        link_text: block.settings.link_text_3,
+                        link_text_2: block.settings.link_text_2_3,
+                        link: block.settings.link_3,
+                        link_2: block.settings.link_2_3,
+                        image_mobile: block.settings.image_mobile_3,
+                        image: block.settings.image_3,
+                        focal_point: block.settings.focal_point_3,
+                        text_align: block.settings.text_align_3
+                    %}
+                {%- endif -%}
+                {%- if block.settings.image_4 -%}
+                    {% render 'page-blocks-slideshow-slide'
+                        parralax: section.settings.parallax,
+                        id: 'slide-4',
+                        index: 3,
+                        color_accent: block.settings.color_accent_4,
+                        overlay_opacity: block.settings.overlay_opacity_4,
+                        top_subheading: block.settings.top_subheading_4,
+                        title: block.settings.title_4,
+                        subheading: block.settings.subheading_4,
+                        link_text: block.settings.link_text_4,
+                        link_text_2: block.settings.link_text_2_4,
+                        link: block.settings.link_4,
+                        link_2: block.settings.link_2_4,
+                        image_mobile: block.settings.image_mobile_4,
+                        image: block.settings.image_4,
+                        focal_point: block.settings.focal_point_4,
+                        text_align: block.settings.text_align_4
+                    %}
+                {%- endif -%}
+                {%- if block.settings.image_5 -%}
+                    {% render 'page-blocks-slideshow-slide'
+                        parralax: section.settings.parallax,
+                        id: 'slide-5',
+                        index: 4,
+                        color_accent: block.settings.color_accent_5,
+                        overlay_opacity: block.settings.overlay_opacity_5,
+                        top_subheading: block.settings.top_subheading_5,
+                        title: block.settings.title_5,
+                        subheading: block.settings.subheading_5,
+                        link_text: block.settings.link_text_5,
+                        link_text_2: block.settings.link_text_2_5,
+                        link: block.settings.link_5,
+                        link_2: block.settings.link_2_5,
+                        image_mobile: block.settings.image_mobile_5,
+                        image: block.settings.image_5,
+                        focal_point: block.settings.focal_point_5,
+                        text_align: block.settings.text_align_5
+                    %}
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>

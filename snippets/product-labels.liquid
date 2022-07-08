@@ -1,0 +1,51 @@
+{%- liquid
+  assign has_custom_label = false
+  assign has_display_tags = false
+  assign all_display_tags = settings.product_display_tags | newline_to_br | split: "<br />"
+  assign display_tags = ''
+
+  for tag in product.tags
+    if tag contains '_label_'
+      assign tag_starts_with = tag | slice: 0
+      if tag_starts_with == '_'
+        assign has_custom_label = true
+        assign custom_label = tag | replace: '_label_', ''
+      endif
+    else if all_display_tags contains tag
+      assign has_display_tags = true
+
+      for display_tag in all_display_tags
+        if display_tag contains tag
+          assign display_tags = display_tags | append: display_tag | trim | append: '|'
+        endif
+      endfor
+    endif
+  endfor
+
+  assign display_tags = display_tags | split: '|'
+  assign index = index | minus: 1
+-%}
+{%- if has_custom_label or has_display_tags -%}
+  <div class="grid-product__tags-container">
+    {%- if has_custom_label -%}
+      <div class="grid-product__tag grid-product__tag--custom">
+        {{ custom_label }}
+      </div>
+    {%- endif -%}
+    {%- if has_display_tags -%}
+      {%- for tag in display_tags -%}
+        {%- assign text = tag | split: ':' | first -%}
+        {%- assign colour = tag | split: ':' | last -%}
+        {%- assign handle = text | handle -%}
+        {%- assign collection = collections[handle] -%}
+        <{% if collection != empty %}a{% else %}div{% endif %}
+            class="grid-product__tag grid-product__tag--custom"
+            {% if colour != blank %} style="background-color: {{ colour }};"{% endif %}
+            {% if collection != empty %}href="/collections/{{ collection.handle }}"{% endif %}
+        >
+          {{ text }}
+        </{% if collection != empty %}a{% else %}div{% endif %}>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,15 @@
+<div class="product-content__tab-container {% if open == true %}initially-open{% endif %}">
+    <button type="button" class="{{ class }} collapsible-trigger collapsible-trigger-btn product-content__tabs-trigger" aria-controls="{{ id }}">
+        {{ title }}
+        <div class="product-content__tabs-icon">
+            {%- render 'svg-icon' with 'plus' -%}
+            {%- render 'svg-icon' with 'minus' -%}
+        </div>
+    </button>
+
+    <div id="{{ id }}" class="collapsible-content collapsible-content--all {% if open == true %}is-open{% endif %}">
+        <div class="product-content__tabs-content collapsible-content__inner">
+            {{ content }}
+        </div>
+    </div>
+</div>

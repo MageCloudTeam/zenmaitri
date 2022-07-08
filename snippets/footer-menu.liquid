@@ -1,0 +1,21 @@
+{%- if linklists[block.settings.menu].links.size > 0 -%}
+  {%- if block.settings.show_footer_title -%}
+    <p class="h4 footer__title">
+      {{ linklists[block.settings.menu].title }}
+    </p>
+  {%- endif -%}
+  <div
+    {% if block.settings.show_footer_title %}
+      id="Footer-{{ block.id }}" class="collapsible-content"
+    {% endif %}>
+    <div class="collapsible-content__inner">
+      <div class="footer__collapsible footer_collapsible--disabled">
+        <ul class="no-bullets site-footer__linklist">
+          {%- for link in linklists[block.settings.menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

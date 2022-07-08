@@ -1,0 +1,27 @@
+<div class="page-width">
+  {% capture header_layout %}
+    <div class="side-text__header">
+      <p class="h3">{{ block.settings.title }}</p>
+    </div>
+  {% endcapture %}
+  <div class="about-page__side-text about-has-margin">
+
+    {% if block.settings.layout == 'left' %}
+      {{ header_layout }}
+    {% endif %}
+
+    <div class="side-text__text">
+      <p>{{ block.settings.main_text | newline_to_br }}</p>
+      {% if block.settings.button_link != blank %}
+        <a href="{{ block.settings.button_link }}" class="arrow-link">{{ block.settings.button_label }}</a>
+      {% endif %}
+    </div>
+
+    {% if block.settings.layout == 'right' %}
+      {{ header_layout }}
+    {% endif %}
+
+  </div>
+
+
+</div>

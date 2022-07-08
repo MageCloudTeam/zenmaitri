@@ -1,0 +1,25 @@
+<canvas id="canvas-background" class="canvas-animated-bg"></canvas>
+{%- style -%}
+    #shopify-section-canvas-background {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background: #222;
+    }
+    #shopify-section-canvas-background canvas {
+        width: 100%;
+        height: 100vh;
+    }
+    #PageContainer {
+        z-index: 1;
+        position: relative;
+    }
+{%- endstyle -%}
+{%- schema -%}
+{
+  "name": "Canvas Background",
+  "settings": [
+  ]
+}
+{%- endschema -%}
