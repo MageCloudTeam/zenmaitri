@@ -31,6 +31,7 @@
       <a href="{{ link.url }}" class="site-nav__link site-nav__link--underline{% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
         {{ link.title }}
       </a>
+      
       {%- if is_megamenu -%}
         {%- assign previous_column_type = '' -%}
         {%- assign animation_column = 1 -%}
@@ -38,7 +39,7 @@
         <div class="site-nav__dropdown megamenu text-left">
           <div class="page-width">
             <div class="grid{% if dropdown_alignment == 'center' %} grid--center{% endif %}">
-              <div class="grid__item medium-up--one-third appear-animation appear-delay-{{ animation_column }}">
+              <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
                 {%- assign animation_column = animation_column | plus: 1 -%}
 
                 {%- for childlink in link.links -%}
@@ -55,7 +56,7 @@
                   -%}
 
                   {%- if create_new_column -%}
-                    </div><div class="grid__item medium-up--one-third appear-animation appear-delay-{{ animation_column }}">
+                    </div><div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
                     {%- assign animation_column = animation_column | plus: 1 -%}
                   {%- endif -%}
 
@@ -74,6 +75,43 @@
                         style="background-image: url({{ collections[subcollection_handle].image | img_url: '400x' }})"></a>
                     {%- endif -%}
                   {%- endif -%}
+
+                  {% assign childlinkDownCase = childlink.handle | downcase %}
+                  {% assign linkDownCase = link.handle | downcase %}
+
+                  {% if linkDownCase contains "about" %}
+                    {%- case childlinkDownCase -%}
+                      {%- when "vision" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_about_1.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "our-community" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_about_2.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "our-store" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_about_3.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                    {%- endcase -%}
+                  {% endif %}
+                  
+                  {% if linkDownCase contains "wellbeing-support" %}
+                    {%- case childlinkDownCase -%}
+                      {%- when "herbalist-support" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_wellbeing_1.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "learn" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_wellbeing_2.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "corporate-wellbeing-other-services" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ 'ZenMaitri_wellbeing_3.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                    {%- endcase -%}
+                  {% endif %}
 
                   <div class="h5">
                       {% if childlink.url == blank %}

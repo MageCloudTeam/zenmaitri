@@ -51,16 +51,6 @@
     .megamenu__colection-image {
       display: none;
     }
-
-    {% for link in main_menu.links %}
-      {% assign link_downcase = link.ttile | downcase %}
-      {% if link_downcase == "about" %}
-        .megamenu__colection-image {
-          display: block;
-        }
-      {% endif %}
-    {% endfor %}
-    
   {% endunless %}
 
   {%- if settings.color_header == settings.color_body_bg or settings.color_body_bg contains settings.color_header -%}
