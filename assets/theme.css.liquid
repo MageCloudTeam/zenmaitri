@@ -3464,6 +3464,13 @@ svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,s
     }
 }
 
+@media only screen and (max-width:640px){
+    .site-footer .grid{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .site-footer a{
     color:{{ settings.color_footer_text | default: "#fff" }};
     color:var(--colorFooterText);
