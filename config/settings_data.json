@@ -121,7 +121,7 @@
           "0b3d38eb-e770-4df5-850d-e6aa02501cfc"
         ],
         "settings": {
-          "main_menu_link_list": "main-navigation",
+          "main_menu_link_list": "new-navigation-menu",
           "mega_menu_images": true,
           "mobile_main_menu_link_list": "mobile-main-menu",
           "toolbar_menu": "header-top-left-menu",
@@ -3578,7 +3578,6 @@
           "type": "product-template",
           "settings": {
             "social_enable": true,
-            "image_position": "left",
             "image_size": "large"
           }
         },
@@ -4310,7 +4309,6 @@
           "settings": {
             "description_style": "default",
             "social_enable": true,
-            "image_position": "left",
             "image_size": "large",
             "thumbnail_position": "below",
             "thumbnail_arrows": false,
