@@ -82,7 +82,7 @@
                           {%- if childlink.url == '#' and has_sub_dropdown -%}
                             <button type="button"
                             aria-controls="Sublinklist-{{ child_list_handle }}-{{ grand_child_list_handle }}"{% if childlink.active or childlink.child_active %} aria-open="true"{% endif %}
-                            class="mobile-nav__link--button collapsible-trigger{% if childlink.active or childlink.child_active %} is-open{% endif %}">
+                            class="mobile-nav__link--button collapsible-trigger mobile-nav__link--sublink-level{% if childlink.active or childlink.child_active %} is-open{% endif %}">
                               <span class="mobile-nav__faux-link"{% if childlink.active %} data-active="true"{% endif %}>{{ childlink.title | escape }}</span>
                               {%- render 'collapsible-icons-alt' -%}
                             </button>
@@ -98,7 +98,7 @@
                             <button type="button"
                               aria-controls="Sublinklist-{{ child_list_handle }}-{{ grand_child_list_handle }}"
                               aria-labelledby="Sublabel-{{ grand_child_list_handle }}"
-                              class="collapsible-trigger{% if childlink.active or childlink.child_active %} is-open{% endif %}">
+                              class="collapsible-trigger mobile-nav__link--sublink-level{% if childlink.active or childlink.child_active %} is-open{% endif %}">
                               {%- render 'collapsible-icons-alt' -%}
                             </button>
                           {%- endif -%}
