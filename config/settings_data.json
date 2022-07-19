@@ -2409,6 +2409,32 @@
               "parallax": false
             }
           },
+          "bf0b464c-3cf0-41fd-93dd-2ee3e1239353": {
+            "type": "text-image-columns",
+            "settings": {
+              "title": "Book A Consultation",
+              "divider": true,
+              "title_1": "",
+              "text_1": "",
+              "button_label_1": "Find out more",
+              "button_link_1": "",
+              "image_2": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2045.jpg",
+              "title_2": "Natural Health Consultation",
+              "text_2": "Explore complex health concerns in depth and develop a plan to overcome them.",
+              "button_label_2": "Find out more",
+              "button_link_2": "shopify:\/\/products\/natural-health-consultation",
+              "image_3": "shopify:\/\/shop_images\/ZenMaitri_store2020_cropped.jpg",
+              "title_3": "Express Health Consultation",
+              "text_3": "Address a specific health concern with help from our medical herbalists.",
+              "button_label_3": "Find out more",
+              "button_link_3": "shopify:\/\/products\/express-health-consultation",
+              "image_4": "shopify:\/\/shop_images\/Ginger_honey_tea_breathe_a0e0f6c1-51ad-4f74-b625-edb9a056f285.jpg",
+              "title_4": "Nutrition Consultation",
+              "text_4": "Learn how to improve your nutrition to meet your health and wellness goals.",
+              "button_label_4": "Book",
+              "button_link_4": "shopify:\/\/products\/nutritional-consultation"
+            }
+          },
           "222c937e-247d-4e5f-81a8-251a097dffad": {
             "type": "image-with-text",
             "settings": {
@@ -2481,32 +2507,6 @@
               "mobile_layout": "top"
             }
           },
-          "bf0b464c-3cf0-41fd-93dd-2ee3e1239353": {
-            "type": "text-image-columns",
-            "settings": {
-              "title": "Book A Consultation",
-              "divider": true,
-              "title_1": "",
-              "text_1": "",
-              "button_label_1": "Find out more",
-              "button_link_1": "",
-              "image_2": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2045.jpg",
-              "title_2": "Natural Health Consultation",
-              "text_2": "Explore complex health concerns in depth and develop a plan to overcome them.",
-              "button_label_2": "Find out more",
-              "button_link_2": "shopify:\/\/products\/natural-health-consultation",
-              "image_3": "shopify:\/\/shop_images\/ZenMaitri_store2020_cropped.jpg",
-              "title_3": "Express Health Consultation",
-              "text_3": "Address a specific health concern with help from our medical herbalists.",
-              "button_label_3": "Find out more",
-              "button_link_3": "shopify:\/\/products\/express-health-consultation",
-              "image_4": "shopify:\/\/shop_images\/Ginger_honey_tea_breathe_a0e0f6c1-51ad-4f74-b625-edb9a056f285.jpg",
-              "title_4": "Nutrition Consultation",
-              "text_4": "Learn how to improve your nutrition to meet your health and wellness goals.",
-              "button_label_4": "Book",
-              "button_link_4": "shopify:\/\/products\/nutritional-consultation"
-            }
-          },
           "b7dae360-d409-4098-aa00-5eb3a47ca691": {
             "type": "large-image",
             "settings": {
@@ -2572,13 +2572,13 @@
         "block_order": [
           "9560f496-fbdd-42aa-8e04-b078243023ac",
           "4634c674-8bb1-4ac3-baae-aa273c1ecdb4",
+          "bf0b464c-3cf0-41fd-93dd-2ee3e1239353",
           "222c937e-247d-4e5f-81a8-251a097dffad",
           "8d4a49e6-436f-4e37-b464-adea96181cf8",
           "11773138-eab3-414b-a1e7-7857709b6af9",
           "bbeab28d-e91c-4057-89d1-4956f52db6cf",
           "9418810c-f997-4268-8f90-d8d53198f1db",
           "4fb99279-e371-4591-83d9-6d3248e93323",
-          "bf0b464c-3cf0-41fd-93dd-2ee3e1239353",
           "b7dae360-d409-4098-aa00-5eb3a47ca691",
           "9d04a406-abd9-4189-a90c-a6b118039c10",
           "a15a184c-6e4c-4d30-9460-08ff6433d068",
