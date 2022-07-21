@@ -5398,7 +5398,7 @@ form+.footer__social{
     float:none;
     display:inline-block;
     vertical-align:top;
-    text-align:left;
+    text-align:center;
 }
 
 .modal{
@@ -9149,7 +9149,7 @@ html[dir=rtl] .background-media-text__text{
     .background-media-text__inner{
         top: initial;
         bottom: 0;
-        transform: none;
+        transform: translate(0px, -50%);
     }
     .background-media-text__inner--no-background.background-media-text__inner {
         top: 50%;
@@ -9175,6 +9175,17 @@ html[dir=rtl] .background-media-text__text{
     }
     .background-media-text.loading:after,.background-media-text.loading:before{
         top:117px;
+    }
+}
+
+
+@media screen and (max-height: 700px) {
+    .background-media-text__inner{
+        transform: translate(0px, -35%);
+    }
+
+    [data-section-type="background-image"] .background-media-text__container{
+        height: 500px;
     }
 }
 

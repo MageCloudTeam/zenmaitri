@@ -39,27 +39,22 @@
         <div class="site-nav__dropdown megamenu text-left">
           <div class="page-width">
             <div class="grid{% if dropdown_alignment == 'center' %} grid--center{% endif %}">
-              <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
-                {%- assign animation_column = animation_column | plus: 1 -%}
+                
 
-                {%- for childlink in link.links -%}
-                  {%- liquid
-                    assign create_new_column = false
+              {%- for childlink in link.links -%}
+                {%- liquid
+                  assign create_new_column = false
 
-                    if childlink.levels > 0 and forloop.index != 1
-                      assign create_new_column = true
-                    endif
+                  if childlink.levels > 0 and forloop.index != 1
+                    assign create_new_column = true
+                  endif
 
-                    if childlink.levels == 0 and previous_column_type == 'full'
-                      assign create_new_column = true
-                    endif
-                  -%}
-
-            {%- if create_new_column -%}
-              </div>
-              <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
-              {%- assign animation_column = animation_column | plus: 1 -%}
-            {%- endif -%}
+                  if childlink.levels == 0 and previous_column_type == 'full'
+                    assign create_new_column = true
+                  endif
+                -%}
+                <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
+                  {%- assign animation_column = animation_column | plus: 1 -%}
 
                   {%- assign subcollection_drop = false -%}
                   {%- if childlink.levels > 0 and childlink.url contains '/collections/' -%}
@@ -80,39 +75,40 @@
                   {% assign childlinkDownCase = childlink.handle | downcase %}
                   {% assign linkDownCase = link.handle | downcase %}
 
-                  {% if linkDownCase contains "about" %}
-                    {%- case childlinkDownCase -%}
-                      {%- when "vision" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_about_1.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                      {%- when "our-community" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_about_2.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                      {%- when "our-store" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_about_3.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                    {%- endcase -%}
-                  {% endif %}
-                  
-                  {% if linkDownCase contains "wellbeing-support" %}
-                    {%- case childlinkDownCase -%}
-                      {%- when "herbalist-support" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_wellbeing_1.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                      {%- when "learn" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_wellbeing_2.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                      {%- when "corporate-wellbeing-other-services" -%}
-                        <div class="megamenu__colection-image border-10"
-                          style="background-image: url({{ 'ZenMaitri_wellbeing_3.jpg' | asset_img_url: '400x' }}); display: block;">
-                        </div>
-                    {%- endcase -%}
-                  {% endif %}
+                  {%- case linkDownCase -%}
+                    {%- when "about-us" -%}
+                      <div class="megamenu__colection-image border-10"
+                        style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                      </div>
+                    {%- when "wellbeing-support" -%}
+                      <div class="megamenu__colection-image border-10"
+                        style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                      </div>
+                    {%- when "shop-by-health-need" -%}
+                      <div 
+                        class="megamenu__colection-image border-10"
+                        style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                            display: block;
+                            width: 40px;
+                            padding-bottom: 45px;
+                            margin: auto;
+                            border-radius: 0;
+                            background-size: contain;"
+                        >
+                      </div>
+                    {%- when "shop-by-range" -%}
+                      <div 
+                        class="megamenu__colection-image border-10"
+                        style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                            display: block;
+                            width: 40px;
+                            padding-bottom: 45px;
+                            margin: auto;
+                            border-radius: 0;
+                            background-size: contain;"
+                        >
+                      </div>
+                  {%- endcase -%}
 
                   <div class="h5">
                     {% if childlink.url == blank %}
@@ -148,8 +144,8 @@
                         </a>
                     </div>
                   {%- endfor -%}
-                {%- endfor -%}
-              </div>
+                </div>
+              {%- endfor -%}
             </div>
           </div>
         </div>
