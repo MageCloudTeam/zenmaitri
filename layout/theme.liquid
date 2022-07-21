@@ -99,7 +99,9 @@
 
   <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
   {%- if template contains 'product' -%}
-    <script src="{{ 'product.min.js' | asset_url }}" defer="defer"></script>
+  {%- comment -%}
+  <script src="{{ 'product.min.js' | asset_url }}" defer="defer"></script>
+  {%- endcomment -%}
   {%- endif -%}
 
   {%- if request.page_type contains 'customers/' -%}
