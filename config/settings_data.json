@@ -54,7 +54,7 @@
     "sku_enable": false,
     "quantity_enable": true,
     "variant_type": "button",
-    "enable_payment_button": false,
+    "enable_payment_button": true,
     "inventory_enable": false,
     "product_zoom_enable": false,
     "product_color_swatches": false,
