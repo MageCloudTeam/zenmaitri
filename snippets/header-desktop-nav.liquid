@@ -55,10 +55,11 @@
                     endif
                   -%}
 
-                  {%- if create_new_column -%}
-                    </div><div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
-                    {%- assign animation_column = animation_column | plus: 1 -%}
-                  {%- endif -%}
+            {%- if create_new_column -%}
+              </div>
+              <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
+              {%- assign animation_column = animation_column | plus: 1 -%}
+            {%- endif -%}
 
                   {%- assign subcollection_drop = false -%}
                   {%- if childlink.levels > 0 and childlink.url contains '/collections/' -%}
@@ -114,18 +115,18 @@
                   {% endif %}
 
                   <div class="h5">
-                      {% if childlink.url == blank %}
-                          <a href="{{ childlink.url }}"
-                             class="site-nav__dropdown-link site-nav__dropdown-link--top-level"
-                          >
-                              {{ childlink.title }}
-                          </a>
-                      {% else %}
-                          <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
-                              {{ childlink.title }}
-                          </span>
-                      {% endif %}
-                    </div>
+                    {% if childlink.url == blank %}
+                        <a href="{{ childlink.url }}"
+                            class="site-nav__dropdown-link site-nav__dropdown-link--top-level"
+                        >
+                            {{ childlink.title }}
+                        </a>
+                    {% else %}
+                        <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
+                            {{ childlink.title }}
+                        </span>
+                    {% endif %}
+                  </div>
 
                   {%- liquid
                     if childlink.levels > 0
