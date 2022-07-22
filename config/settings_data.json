@@ -60,7 +60,7 @@
     "product_color_swatches": false,
     "collection_color_swatches": false,
     "product_contact": false,
-    "enable_product_reviews": true,
+    "enable_product_reviews": false,
     "collection_grid_style": "overlaid-box",
     "collection_grid_shape": "square",
     "collection_grid_image": "product",
