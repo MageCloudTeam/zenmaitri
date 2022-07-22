@@ -75,52 +75,54 @@
                   {% assign childlinkDownCase = childlink.handle | downcase %}
                   {% assign linkDownCase = link.handle | downcase %}
 
-                  {%- case linkDownCase -%}
-                    {%- when "about-us" -%}
-                      <div class="megamenu__colection-image border-10"
-                        style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
-                      </div>
-                    {%- when "wellbeing-support" -%}
-                      <div class="megamenu__colection-image border-10"
-                        style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
-                      </div>
-                    {%- when "shop-by-health-need" -%}
-                      <div 
-                        class="megamenu__colection-image border-10"
-                        style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
-                            display: block;
-                            width: 40px;
-                            padding-bottom: 45px;
-                            margin: auto;
-                            border-radius: 0;
-                            background-size: contain;"
-                        >
-                      </div>
-                    {%- when "shop-by-range" -%}
-                      <div 
-                        class="megamenu__colection-image border-10"
-                        style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
-                            display: block;
-                            width: 40px;
-                            padding-bottom: 45px;
-                            margin: auto;
-                            border-radius: 0;
-                            background-size: contain;"
-                        >
-                      </div>
-                  {%- endcase -%}
+                  {% capture image_nav %}
+                    {%- case linkDownCase -%}
+                      {%- when "about-us" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "wellbeing-support" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "shop-by-health-need" -%}
+                        <div 
+                          class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                              display: block;
+                              width: 40px;
+                              padding-bottom: 45px;
+                              margin: auto;
+                              border-radius: 0;
+                              background-size: contain;"
+                          >
+                        </div>
+                      {%- when "shop-by-range" -%}
+                        <div 
+                          class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                              display: block;
+                              width: 40px;
+                              padding-bottom: 45px;
+                              margin: auto;
+                              border-radius: 0;
+                              background-size: contain;"
+                          >
+                        </div>
+                    {%- endcase -%}
+                  {% endcapture %}
 
                   <div class="h5">
-                    {% if childlink.url == blank %}
-                        <a href="{{ childlink.url }}"
-                            class="site-nav__dropdown-link site-nav__dropdown-link--top-level"
-                        >
-                            {{ childlink.title }}
-                        </a>
+                    {% if childlink.url == blank %}  
+                      {{image_nav}}
+                      <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
+                        {{ childlink.title }}
+                      </span>
                     {% else %}
-                        <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
-                            {{ childlink.title }}
-                        </span>
+                      <a href="{{ childlink.url }}" class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
+                        {{image_nav}}
+                        {{ childlink.title }}
+                      </a>
                     {% endif %}
                   </div>
 
