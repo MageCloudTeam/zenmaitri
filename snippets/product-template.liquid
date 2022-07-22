@@ -105,8 +105,8 @@
                     {% endif %}
                     
                     <div class="product-single__meta-tools">
-                        <div class="product-single__price">
-                            {{product.price | money }}
+                        <div id="#ProductPrice-{{ section_id }}" class="product-single__price">
+                            {{product.selected_or_first_available_variant.price | money }}
                         </div>
                         {%- if settings.enable_product_reviews and settings.reviews_layout == 'full' -%}
                         {%- liquid

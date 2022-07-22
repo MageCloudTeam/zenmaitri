@@ -3103,6 +3103,7 @@ lazySizesConfig.expFactor = 4;
       },
 
       setAvailability: function(evt, variant) {
+        console.log(variant)
         // Object to hold all options by value.
         // This will be what sets a button/dropdown as
         // sold out or unavailable (not a combo set as purchasable)
@@ -5917,7 +5918,7 @@ lazySizesConfig.expFactor = 4;
         productImageMain: '.product-image-main--' + sectionId,
 
         priceWrapper: '.product__price-wrap-' + sectionId,
-        price: '#ProductPrice-' + sectionId,
+        price: '.product-single__price',
         comparePrice: '#ComparePrice-' + sectionId,
         savePrice: '#SavePrice-' + sectionId,
         priceA11y: '#PriceA11y-' + sectionId,
@@ -6156,7 +6157,7 @@ lazySizesConfig.expFactor = 4;
             // Available, enable the submit button and change text
             cartBtn.classList.remove(classes.disabled);
             cartBtn.disabled = false;
-            var defaultText = cartBtnText.dataset.defaultText + ' - ' + theme.Currency.formatMoney(variant.price, theme.settings.moneyFormat);
+            var defaultText = cartBtnText.dataset.defaultText;
             cartBtnText.textContent = defaultText;
           } else {
             // Sold out, disable the submit button and change text
@@ -6174,11 +6175,10 @@ lazySizesConfig.expFactor = 4;
 
       updatePrice: function(evt) {
         var variant = evt.detail.variant;
-
+        
         if (variant) {
           // Regular price
           if (this.cache.price) this.cache.price.innerHTML = theme.Currency.formatMoney(variant.price, theme.settings.moneyFormat);
-
           // Sale price, if necessary
           if (variant.compare_at_price > variant.price) {
             if (this.cache.comparePrice) this.cache.comparePrice.innerHTML = theme.Currency.formatMoney(variant.compare_at_price, theme.settings.moneyFormat);
