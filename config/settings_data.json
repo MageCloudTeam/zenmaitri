@@ -543,12 +543,12 @@
       "1619598514783f7e01": {
         "type": "background-image-text",
         "settings": {
+          "image": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2852_1.jpg",
           "subtitle": "",
           "title": "OUR FLAGSHIP STORE IN CHISWICK, London",
           "text": "<p>Natural health at your door stop.<\/p>",
           "button_label": "Where to find us",
           "button_link": "shopify:\/\/pages\/our-store",
-          "image": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2852_1.jpg",
           "overlay_colour": "#000000",
           "overlay_amount": 100,
           "focal_point": "top",
@@ -3337,12 +3337,12 @@
       "165632892382151399": {
         "type": "background-image-text",
         "settings": {
+          "image": "shopify:\/\/shop_images\/saranew.jpg",
           "subtitle": "Our vision",
           "title": "Healthy Living Made Simple",
           "text": "<p>We want to transform the way our community thinks about health and wellbeing. <\/p>",
           "button_label": "LEARN MORE",
           "button_link": "shopify:\/\/pages\/vision",
-          "image": "shopify:\/\/shop_images\/saranew.jpg",
           "overlay_colour": "#000000",
           "overlay_amount": 100,
           "focal_point": "center",
@@ -3370,12 +3370,13 @@
       "1657200531e070f807": {
         "type": "background-image-text",
         "settings": {
+          "image": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2259_3.jpg",
+          "second_image": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2259_3_e067c8d2-9c31-43d6-aeaf-5fc01f0ec929.jpg",
           "subtitle": "Welcome",
           "title": "Health and Wellness, Inspired by Nature",
           "text": "<p>Welcome to your home for natural health products & health consultations.<\/p>",
           "button_label": "Try Our Product Finder",
           "button_link": "#quiz-LwH4pe",
-          "image": "shopify:\/\/shop_images\/ZenMaitri_store2020_web-2259_3.jpg",
           "overlay_colour": "#000000",
           "overlay_amount": 100,
           "focal_point": "center",
