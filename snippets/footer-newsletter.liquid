@@ -12,8 +12,25 @@
           {{ block.settings.text }}
         {%- endif -%}
 
-        {%- if block.settings.form_embed != blank -%}
+        {%- if block.settings.form_embed != blank or block.settings.static_form_embed-%}
             {{ block.settings.form_embed }}
+            {{ block.settings.static_form_embed }}
+            <style>
+              .klaviyo-form-RA7NCL{
+                margin-bottom: 25px;
+              }
+
+              .klaviyo-form-RA7NCL input{
+                position: relative;
+                background: linear-gradient(#fff, #fff) padding-box,
+                            linear-gradient(90deg, rgb(0 0 0) 0%, rgba(237,183,140,1) 50%, rgb(0 0 0) 100%) border-box !important;
+                border: 1px solid transparent !important;
+              }
+
+              .footer__social{
+                text-align: center;
+              }
+            </style>
         {%- else -%}
             {%- form 'customer', id: 'newsletter-footer' -%}
               {%- if form.posted_successfully? -%}

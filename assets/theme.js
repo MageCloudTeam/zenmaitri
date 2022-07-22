@@ -1652,7 +1652,8 @@ lazySizesConfig.expFactor = 4;
     var classes = {
       hide: 'hide',
       open: 'is-open',
-      autoHeight: 'collapsible--auto-height'
+      autoHeight: 'collapsible--auto-height',
+      navSublink: 'mobile-nav__sublist'
     };
 
     var namespace = '.collapsible';
@@ -1681,7 +1682,6 @@ lazySizesConfig.expFactor = 4;
       var isOpen = el.classList.contains(classes.open);
       var moduleId = el.getAttribute('aria-controls');
       var container = document.querySelectorAll('#' + moduleId);
-
       if (container.length > 1) {
         container = el.parentElement.querySelector('#' + moduleId);
       } else {
@@ -1725,7 +1725,15 @@ lazySizesConfig.expFactor = 4;
       if (isOpen) {
         el.classList.remove(classes.open);
       } else {
-        el.classList.add(classes.open);
+        if(!el.classList.contains("mobile-nav__link--top-level")){
+          let subLinks = document.querySelectorAll(".mobile-nav__link--sublink-level");
+          hideLinks(subLinks, el)
+        }
+
+        if(el.classList.contains("mobile-nav__link--top-level")){
+          let topLinks = document.querySelectorAll(".mobile-nav__link--top-level");
+          hideLinks(topLinks, el)
+        }
       }
 
       setTransitionHeight(container, height, isOpen, isAutoHeight);
@@ -1754,10 +1762,43 @@ lazySizesConfig.expFactor = 4;
       }
     }
 
+    function hideLinks (arrayLinks, targetEl){
+      arrayLinks.forEach(link => {
+        if(link.classList.contains(classes.open)){
+          let moduleId = link.getAttribute('aria-controls');
+          let container = document.querySelector('#' + moduleId);
+          let height = container.querySelector(selectors.moduleInner).offsetHeight;
+          let isOpen = link.classList.contains(classes.open);
+          let isAutoHeight = container.classList.contains(classes.autoHeight);
+          link.classList.remove(classes.open)
+          link.setAttribute('aria-expanded', !isOpen);
+
+          if (isOpen && isAutoHeight) {
+            setTimeout(function() {
+              height = 0;
+              setTransitionHeight(container, height, isOpen, isAutoHeight);
+            }, 0);
+          }
+    
+          if (isOpen && !isAutoHeight) {
+            height = 0;
+          }
+    
+          setTransitionHeight(container, height, isOpen, isAutoHeight);
+        }
+      })
+      targetEl.classList.add(classes.open);
+    }
+
     function setTransitionHeight(container, height, isOpen, isAutoHeight) {
       container.classList.remove(classes.hide);
       theme.utils.prepareTransition(container, function() {
-        container.style.height = height+'px';
+        if(height == 0){
+          container.style.height = height+'px';
+        }else{
+          container.style.height = 'auto';
+        }
+        
         if (isOpen) {
           container.classList.remove(classes.open);
         } else {
@@ -3062,6 +3103,7 @@ lazySizesConfig.expFactor = 4;
       },
 
       setAvailability: function(evt, variant) {
+        console.log(variant)
         // Object to hold all options by value.
         // This will be what sets a button/dropdown as
         // sold out or unavailable (not a combo set as purchasable)
@@ -5876,7 +5918,7 @@ lazySizesConfig.expFactor = 4;
         productImageMain: '.product-image-main--' + sectionId,
 
         priceWrapper: '.product__price-wrap-' + sectionId,
-        price: '#ProductPrice-' + sectionId,
+        price: '.product-single__price',
         comparePrice: '#ComparePrice-' + sectionId,
         savePrice: '#SavePrice-' + sectionId,
         priceA11y: '#PriceA11y-' + sectionId,
@@ -6115,7 +6157,7 @@ lazySizesConfig.expFactor = 4;
             // Available, enable the submit button and change text
             cartBtn.classList.remove(classes.disabled);
             cartBtn.disabled = false;
-            var defaultText = cartBtnText.dataset.defaultText + ' - ' + theme.Currency.formatMoney(variant.price, theme.settings.moneyFormat);
+            var defaultText = cartBtnText.dataset.defaultText;
             cartBtnText.textContent = defaultText;
           } else {
             // Sold out, disable the submit button and change text
@@ -6133,11 +6175,10 @@ lazySizesConfig.expFactor = 4;
 
       updatePrice: function(evt) {
         var variant = evt.detail.variant;
-
+        
         if (variant) {
           // Regular price
           if (this.cache.price) this.cache.price.innerHTML = theme.Currency.formatMoney(variant.price, theme.settings.moneyFormat);
-
           // Sale price, if necessary
           if (variant.compare_at_price > variant.price) {
             if (this.cache.comparePrice) this.cache.comparePrice.innerHTML = theme.Currency.formatMoney(variant.compare_at_price, theme.settings.moneyFormat);

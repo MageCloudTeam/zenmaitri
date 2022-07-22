@@ -1,7 +1,7 @@
 {%- capture form_id -%}AddToCartForm-{{ section_id }}{%- endcapture -%}
 {%- form 'product', product, data-productid: product.id, id: form_id, class: 'product-single__form' -%}
   {%- comment -%}
-  {%- render 'loading' -%}
+    {%- render 'loading' -%}
   {%- endcomment -%}
   {%- unless product.has_only_default_variant -%}
     {%- for option in product.options_with_values -%}
@@ -155,12 +155,15 @@
 
           <button {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}name="add" id="AddToCart-{{ section_id }}" class="btn btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups == empty %} btn--secondary{% endif %}"{% unless current_variant.available %} disabled="disabled"{% endunless %}>
             <span id="AddToCartText-{{ section_id }}" data-default-text="{{ default_text }}">
-              {{ button_text }} -
+              {{ button_text }}
+              {%- comment -%}
+              -
               {%- render 'product-price'
                 current_variant: current_variant,
                 product: product,
                 section_id: section_id
               -%}
+              {%- endcomment -%}
             </span>
           </button>
 

@@ -97,11 +97,12 @@
     <link rel="stylesheet" href="{{ 'currency-flags.min.css' | asset_url | split: '?' | first }}">
   {%- endif -%}
 
-  <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
+  <!-- <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script> -->
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   {%- if template contains 'product' -%}
-  {%- comment -%}
-  <script src="{{ 'product.min.js' | asset_url }}" defer="defer"></script>
-  {%- endcomment -%}
+    {%- comment -%}
+    <script src="{{ 'product.min.js' | asset_url }}" defer="defer"></script>
+    {%- endcomment -%}
   {%- endif -%}
 
   {%- if request.page_type contains 'customers/' -%}

@@ -29,6 +29,7 @@
     <div class="divider">{% render 'svg-icon' with 'divider' %}</div>
     <div class="grid">
       {%- assign row_width = 0 -%}
+      {% assign index = 1 %}
       {%- for block in section.blocks -%}
         {%- assign row_width = row_width | plus: block.settings.container_width -%}
         {%- if row_width > 100 -%}
@@ -36,7 +37,24 @@
           {%- assign row_width = row_width | minus: 100 -%}
         {%- endif -%}
 
-        <div {{ block.shopify_attributes }} class="grid__item footer__item--{{ block.id }}" data-type="{{ block.type }}">
+        {% case block.type %}
+          {% when "newsletter" %}
+            {% assign index = 1 %}
+          {% when "menu" %}
+            {% assign footer_menu = linklists[block.settings.menu] %}
+            {% if footer_menu.title contains "Information" %}
+              {% assign index = 2 %}
+            {% elsif footer_menu.title contains "About" %}
+              {% assign index = 3 %}
+            {% endif %}
+          {% when "custom" %}
+            {% assign index = 4 %}
+          {% else %}
+            {% assign index = 5 %}
+        {% endcase %}
+
+        <div {{ block.shopify_attributes }} class="grid__item footer__item--{{ block.id }}" data-type="{{ block.type }}" style="order:{{index}};">
+          {% assign index = index | plus: 1 %}
           {%- style -%}
             @media only screen and (min-width: 769px) and (max-width: 959px) {
               .footer__item--{{ block.id }} {
@@ -273,9 +291,16 @@
           {
             "type": "html",
             "label": "Form embed code",
-            "info": "If using an external service like Klaviyo, you can add the form embed code here to display instead of the Shopify's default newsletter signup form.",
+            "info": "If using an external service like Klaviyo, you can add the form embed code here to display instead of the Shopify's default newsletter signup form. Use popup form",
             "default": "<div class=\"klaviyo-form-Y6anCv\"></div>",
             "id": "form_embed"
+          },
+          {
+            "type": "html",
+            "label": "Static Form embed code",
+            "info": "Use static form",
+            "default": "<div class=\"klaviyo-form-RA7NCL\"></div>",
+            "id": "static_form_embed"
           }
         ]
       },

@@ -98,7 +98,30 @@
             data-logo-align="{{ logo_alignment }}">
 
             {%- if logo_alignment == 'center' -%}
-              <div class="header-item header-item--left header-item--navigation">
+            {%- comment -%}
+            <div class="header-item header-item--left header-item--navigation">
+              <div class="site-nav header-drawer-nav">
+                <button
+                  type="button"
+                  class="site-nav__link site-nav__link--icon js-drawer-open-nav"
+                  aria-controls="NavDrawer">
+                  {% render 'svg-icon' with 'menu-icon' %}
+                  <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
+                </button>
+              </div>
+              {%- if main_menu_alignment == 'center' or main_menu_alignment == 'center-split' -%}
+                <div class="site-nav small--hide">
+                  {%- render 'toolbar',
+                    section: section,
+                    toolbar_menu: toolbar_menu,
+                    overlay_header: overlay_header
+                  -%}
+                </div>
+              {%- endif -%}
+            </div>
+            {%- endcomment -%}
+
+              <div class="header-item header-item--left">
                 <div class="site-nav header-drawer-nav">
                   <button
                     type="button"
@@ -108,15 +131,23 @@
                     <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
                   </button>
                 </div>
-                {%- if main_menu_alignment == 'center' or main_menu_alignment == 'center-split' -%}
-                  <div class="site-nav small--hide">
-                    {%- render 'toolbar',
-                      section: section,
-                      toolbar_menu: toolbar_menu,
-                      overlay_header: overlay_header
-                    -%}
+                <div class="site-nav">
+                  <div class="site-nav__icons">
+                    {%- if section.settings.show_wishlist -%}
+                      <a href="/a/wishlist" class="site-nav__link site-nav__link--icon small--hide">
+                        {% render 'svg-icon' with 'heart-icon' %}
+                        <span class="">{{ 'general.wishlist.link' | t }}</span>
+                      </a>
+                    {%- endif -%}
+                
+                    {%- if settings.search_enable -%}
+                      <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-search-header small--hide">
+                        {% render 'svg-icon' with 'search-icon' %}
+                        <span class="">{{ 'general.search.title' | t }}</span>
+                      </a>
+                    {%- endif -%}
                   </div>
-                {%- endif -%}
+                </div>
               </div>
 
               {%- if main_menu_alignment != 'center-split' -%}

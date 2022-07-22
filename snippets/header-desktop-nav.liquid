@@ -31,6 +31,7 @@
       <a href="{{ link.url }}" class="site-nav__link site-nav__link--underline{% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
         {{ link.title }}
       </a>
+      
       {%- if is_megamenu -%}
         {%- assign previous_column_type = '' -%}
         {%- assign animation_column = 1 -%}
@@ -38,26 +39,22 @@
         <div class="site-nav__dropdown megamenu text-left">
           <div class="page-width">
             <div class="grid{% if dropdown_alignment == 'center' %} grid--center{% endif %}">
-              <div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
-                {%- assign animation_column = animation_column | plus: 1 -%}
+                
 
-                {%- for childlink in link.links -%}
-                  {%- liquid
-                    assign create_new_column = false
+              {%- for childlink in link.links -%}
+                {%- liquid
+                  assign create_new_column = false
 
-                    if childlink.levels > 0 and forloop.index != 1
-                      assign create_new_column = true
-                    endif
+                  if childlink.levels > 0 and forloop.index != 1
+                    assign create_new_column = true
+                  endif
 
-                    if childlink.levels == 0 and previous_column_type == 'full'
-                      assign create_new_column = true
-                    endif
-                  -%}
-
-                  {%- if create_new_column -%}
-                    </div><div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
-                    {%- assign animation_column = animation_column | plus: 1 -%}
-                  {%- endif -%}
+                  if childlink.levels == 0 and previous_column_type == 'full'
+                    assign create_new_column = true
+                  endif
+                -%}
+                <div class="grid__item {% if link.title == "Shop By Health Need" %}medium-up--one-fifth{% else %}medium-up--one-third{% endif %} appear-animation appear-delay-{{ animation_column }}">
+                  {%- assign animation_column = animation_column | plus: 1 -%}
 
                   {%- assign subcollection_drop = false -%}
                   {%- if childlink.levels > 0 and childlink.url contains '/collections/' -%}
@@ -75,19 +72,59 @@
                     {%- endif -%}
                   {%- endif -%}
 
-                  <div class="h5">
-                      {% if childlink.url == blank %}
-                          <a href="{{ childlink.url }}"
-                             class="site-nav__dropdown-link site-nav__dropdown-link--top-level"
+                  {% assign childlinkDownCase = childlink.handle | downcase %}
+                  {% assign linkDownCase = link.handle | downcase %}
+
+                  {% capture image_nav %}
+                    {%- case linkDownCase -%}
+                      {%- when "about-us" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "wellbeing-support" -%}
+                        <div class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.jpg' | asset_img_url: '400x' }}); display: block;">
+                        </div>
+                      {%- when "shop-by-health-need" -%}
+                        <div 
+                          class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                              display: block;
+                              width: 40px;
+                              padding-bottom: 45px;
+                              margin: auto;
+                              border-radius: 0;
+                              background-size: contain;"
                           >
-                              {{ childlink.title }}
-                          </a>
-                      {% else %}
-                          <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
-                              {{ childlink.title }}
-                          </span>
-                      {% endif %}
-                    </div>
+                        </div>
+                      {%- when "shop-by-range" -%}
+                        <div 
+                          class="megamenu__colection-image border-10"
+                          style="background-image: url({{ childlinkDownCase | append: '.png' | asset_img_url: '100x' }}); 
+                              display: block;
+                              width: 40px;
+                              padding-bottom: 45px;
+                              margin: auto;
+                              border-radius: 0;
+                              background-size: contain;"
+                          >
+                        </div>
+                    {%- endcase -%}
+                  {% endcapture %}
+
+                  <div class="h5">
+                    {% if childlink.url == blank %}  
+                      {{image_nav}}
+                      <span class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
+                        {{ childlink.title }}
+                      </span>
+                    {% else %}
+                      <a href="{{ childlink.url }}" class="site-nav__dropdown-link site-nav__dropdown-link--top-level">
+                        {{image_nav}}
+                        {{ childlink.title }}
+                      </a>
+                    {% endif %}
+                  </div>
 
                   {%- liquid
                     if childlink.levels > 0
@@ -109,8 +146,8 @@
                         </a>
                     </div>
                   {%- endfor -%}
-                {%- endfor -%}
-              </div>
+                </div>
+              {%- endfor -%}
             </div>
           </div>
         </div>
