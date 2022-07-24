@@ -9181,7 +9181,19 @@ html[dir=rtl] .background-media-text__text{
 
 @media screen and (max-height: 700px) {
     .background-media-text__inner{
-        transform: translate(0px, -35%);
+        transform: translate(0px, -15%);
+    }
+
+    .background-media-text__inner .background-media-text__text{
+        padding: 19.5px;
+    }
+
+    .background-media-text__inner .background-media-text__text .h2{
+        font-size: calc(var(--typeHeaderSize)*.60);
+    }
+
+    .background-media-text__inner .background-media-text__text .btn{
+        padding: 10px 20px;
     }
 
     [data-section-type="background-image"] .background-media-text__container{
